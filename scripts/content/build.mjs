@@ -91,7 +91,7 @@ const home = {
       <p class="lead">Sou Viviane Roque, especialista em transformação digital e fundadora do Aurora Premium. Trabalho com tecnologia e operações desde 1998 e hoje levo esse repertório ao pequeno e médio empreendedor.</p>
       <div class="btns">${cta()} <a class="btn ghost" href="/quem-sou/">Conhecer minha trajetória</a></div>
     </div>
-    <div class="hero-photo"><img src="/img/viviane-roque-retrato.png" width="510" height="564" alt="Retrato de Viviane Roque" fetchpriority="high" decoding="async"></div>
+    <div class="hero-photo"><img src="/img/viviane-roque-retrato-510w.webp" srcset="/img/viviane-roque-retrato-340w.webp 340w, /img/viviane-roque-retrato-510w.webp 510w" sizes="(min-width: 900px) 38vw, 100vw" width="510" height="564" alt="Retrato de Viviane Roque" fetchpriority="high" decoding="async"></div>
   </div>
 </section>
 

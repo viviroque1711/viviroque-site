@@ -7,6 +7,9 @@ import '@fontsource/literata/latin-600.css';
 import '@fontsource/schibsted-grotesk/latin-500.css';
 import '@fontsource/schibsted-grotesk/latin-600.css';
 import '../styles/site.css';
+import literata400 from '@fontsource/literata/files/literata-latin-400-normal.woff2?url';
+import literata600 from '@fontsource/literata/files/literata-latin-600-normal.woff2?url';
+import schibsted500 from '@fontsource/schibsted-grotesk/files/schibsted-grotesk-latin-500-normal.woff2?url';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
@@ -37,6 +40,7 @@ if (process.env.SITE_ENV === 'staging') {
 <html lang={SITE.lang}>
 <head>
 <Fragment set:html={head} />
+{[literata400, literata600, schibsted500].map((f) => <link rel="preload" as="font" type="font/woff2" href={f} crossorigin />)}
 {ld && <script type="application/ld+json" is:inline set:html={ld}></script>}
 {css && <style is:inline set:html={css}></style>}
 </head>
