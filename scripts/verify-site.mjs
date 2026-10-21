@@ -53,14 +53,14 @@ for (const u of urls) {
   const qs = (html.match(/class="faq-q"/g) || []).length;
   const faqOk = qs === faqLd.length && faqLd.every((q) => flat(txt).includes(flat(dec(q.acceptedAnswer.text))));
   // imagens e links
-  const imgs = [...new Set([...html.matchAll(/(?:src|srcset)="([^"]+)"/g)].flatMap((m) => m[1].split(',').map((x) => x.trim().split(/\s+/)[0])).filter((x) => x.startsWith('/') && !x.startsWith('//')).map((x) => (prefix && x.startsWith(prefix + '/') ? x.slice(prefix.length) : x)))];
+  const imgs = [...new Set([...html.matchAll(/(?:src|srcset)="([^"]+)"/g)].flatMap((m) => m[1].split(',').map((x) => x.trim().split(/\s+/)[0])).filter((x) => x.startsWith('/') && !x.startsWith('//')))];
   let broken = 0;
   await Promise.all(imgs.map(async (i) => { const r = await get(i, { method: 'HEAD' }); if (!r.ok) broken++; }));
   const links = [...new Set([...html.matchAll(/<a [^>]*href="(\/[^"#?]*)[^"]*"/g)].map((m) => m[1]).filter((x) => !x.startsWith('//')))].map((x) => (prefix && x.startsWith(prefix + '/') ? x.slice(prefix.length) : x));
   const badLinks = [];
   await Promise.all(links.map(async (l) => { if (!/\.(png|jpe?g|webp|ico|svg|xml|txt|css|js)$/.test(l) && !(await linkOk(l))) badLinks.push(l); }));
   const remote = (html.match(/horizons-cdn\.hostinger|hostingerapp|fonts\.googleapis|fonts\.gstatic/g) || []).length;
-  const wantCanon = staging ? prefix + u : SITE.url + u;
+  const wantCanon = SITE.url + u;
   const robotsOk = staging ? /noindex/.test(robots) : /index/.test(robots) && !/noindex/.test(robots);
   const ok = res.status === 200 && title && desc && desc.length <= 160 && h1n === 1 && phOk && canon === wantCanon && robotsOk && ldOk && !dup && noRating && faqOk && broken === 0 && !badLinks.length && !remote && words > 100;
   add(`página ${u}`, ok, `${res.status} | "${title.slice(0, 48)}" | h1 ${h1n} | frase ${phOk ? 'ok' : 'FALTA'} | canon ${canon === wantCanon ? 'ok' : 'ERRO ' + canon} | robots ${robotsOk ? 'ok' : 'ERRO ' + robots} | ld ${ldOk && !dup && noRating ? 'ok' : 'ERRO'} (${Object.entries(types).map(([k, v]) => k + v).join(',')}) | faq ${qs}/${faqLd.length} ${faqOk ? 'ok' : 'ERRO'} | imgs ${imgs.length} (${broken} quebradas) | links ${links.length} (${badLinks.length} ruins${badLinks.length ? ': ' + badLinks.join(',') : ''}) | remotos ${remote} | ${words} palavras`);
@@ -89,7 +89,8 @@ for (const o of oldUrls) {
   const r = await get(withSlash); const h = r.status === 200 ? await r.text() : '';
   const meta = (h.match(/url=([^"]+)"/) || [])[1];
   let ok = r.status === 200;
-  if (ok && meta) { const t = await get(meta.startsWith(prefix) || meta.startsWith('http') ? meta : meta); ok = t.status === 200; }
+  // destino de outro domínio (ex.: aurorapremium.com): confere só que a página de redirecionamento aponta para ele
+  if (ok && meta && !meta.startsWith('http')) { const t = await get(meta); ok = t.status === 200; }
   add(`URL antiga ${o}`, ok, `${r.status}${meta ? ' → ' + meta : ''}`);
 }
 {

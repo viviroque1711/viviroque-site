@@ -27,7 +27,7 @@ a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 3px solid var(--bronze); outline-offset: 3px; border-radius: 2px; }
 .dark :focus-visible, .ft :focus-visible, .wa:focus-visible { outline-color: #fff; }
 main:focus { outline: none; }
-.skip { position: absolute; left: 8px; top: -60px; z-index: 100; background: var(--graphite); color: #fff; padding: 10px 16px; font: 600 1rem var(--sans); border-radius: 4px; }
+.skip { position: absolute; left: 8px; top: -60px; min-height: 44px; display: inline-flex; align-items: center; z-index: 100; background: var(--graphite); color: #fff; padding: 10px 16px; font: 600 1rem var(--sans); border-radius: 4px; }
 .skip:focus { top: 8px; }
 h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; margin: 0; text-wrap: balance; color: var(--graphite); }
 h1 { font-size: clamp(2rem, 4.4vw, 2.95rem); line-height: 1.12; }
@@ -222,7 +222,7 @@ ul, ol { margin: 0 0 1.1em; }
 .ft-company small { color: var(--on-dark-2); }
 .ft-h { font-weight: 600; color: #fff; margin-bottom: .5rem; }
 .ft-col ul { list-style: none; margin: 0; padding: 0; }
-.ft-col li a { display: inline-flex; align-items: center; min-height: 40px; }
+.ft-col li a { display: inline-flex; align-items: center; min-height: 44px; }
 .ft-copy { max-width: var(--wrap); margin: 2.5rem auto 0; padding: 1.25rem 1.25rem 0; border-top: 1px solid var(--line-dark); color: var(--on-dark-2); font-size: .9375rem; }
 
 /* WhatsApp flutuante */
