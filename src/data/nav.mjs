@@ -16,5 +16,5 @@ export const WHATSAPP = { href: waHref(), label: SITE.wa.label };
 export const EXTERNAL = {
   rbe: { href: SITE.rbe, label: 'Roque Business Evolution' },
   aurora: { href: SITE.aurora, label: 'Aurora Premium' },
-  engagebot: { href: 'https://roquebusinessevolution.com/engagebot/', label: 'EngageBot' },
+  engagebot: { href: 'https://engagebot.com.br/', label: 'EngageBot' },
 };

@@ -18,6 +18,7 @@ const person = () => ({
   jobTitle: 'Fundadora',
   description: 'Especialista em transformação digital, gestão de operações e inteligência artificial. Fundadora da Roque Business Evolution e do Aurora Premium.',
   sameAs: [SITE.linkedin, SITE.instagram],
+  knowsAbout: ['Transformação digital', 'Gestão de operações', 'Inteligência artificial para empresas', 'Automação de processos', 'Governança e PMO', 'Gestão de projetos', 'Mentoria para líderes e empresários', 'Sistemas de agendamento e gestão'],
   worksFor: { '@id': RBE_ID },
   hasCredential: ['PMP', 'SAFe Agilist', 'PSM', 'Six Sigma Master Black Belt'].map((n) => ({ '@type': 'EducationalOccupationalCredential', name: n, credentialCategory: 'certification' })),
   alumniOf: [
@@ -35,20 +36,23 @@ const cta = (text = 'Falar no WhatsApp', msg = WA_DEFAULT) => `<a class="btn" hr
 const BUILD = `<div class="build">
 <div class="big"><h3>Roque Business Evolution</h3><p>Agência de IA, criação de sites, desenvolvimento de software e transformação digital para empresas que querem evoluir. Fundei a Roque para levar a tecnologia que sustenta grandes operações a quem empreende.</p><p><a class="more" href="https://roquebusinessevolution.com/">Conhecer a Roque Business Evolution</a></p></div>
 <div class="mid"><h3>Aurora Premium</h3><p>Sistema de agendamento e gestão para salões, barbearias, clínicas, spas e pet shops.</p><p><a class="more" href="https://aurorapremium.com/">Conhecer o Aurora Premium</a></p></div>
-<div class="sm"><h3>EngageBot</h3><p>Atendimento com IA no WhatsApp e no site.</p><p><a class="more" href="https://roquebusinessevolution.com/engagebot/">Conhecer o EngageBot</a></p></div>
+<div class="sm"><h3>EngageBot</h3><p>Atendimento com IA no WhatsApp e no site.</p><p><a class="more" href="https://engagebot.com.br/">Conhecer o EngageBot</a></p></div>
 </div>`;
 
 // ------------------------------------------------------------------ linha do tempo (1998 a 2025)
+// A linha do tempo vai de 1998 até hoje. Os anos intermediários e o do EngageBot seguem sem ano até a Viviane confirmar.
+const ENGAGEBOT = 'https://engagebot.com.br/';
 const MARCOS = [
   { when: '1998', who: 'BCP, depois Claro', text: 'Comecei em tecnologia em 1998, na BCP, que depois se tornou a Claro. Naquele tempo só existia telefonia analógica, e meu trabalho era estruturar operações digitais. Acompanhei a evolução das redes até o 4G.' },
   { when: 'Ernst & Young', who: 'Bancos e bandeiras de cartão', text: 'Na Ernst & Young, trabalhei na estrutura financeira de bancos e bandeiras de cartão. É um tipo de operação em que cada processo precisa funcionar todos os dias.' },
   { when: 'NEC', who: 'Telecom e as arenas da Copa de 2014', text: 'Na NEC, colaborei na expansão de clientes, em telecomunicações e novas tecnologias. Atuei no PMO da Arena Fonte Nova, para a Copa de 2014, e como advisor na Arena Pernambuco.' },
-  { when: 'Depois', who: 'Manufatura, Google, Apple e municípios', text: 'Segui por manufatura, pelos lançamentos de Google e Apple e pelo desenvolvimento de sistemas para municípios.' },
-  { when: 'Roque', who: 'Roque Business Evolution', text: 'Fundei a Roque Business Evolution, agência de IA, sites e software. O objetivo é levar tecnologia, inteligência e transformação digital ao pequeno e médio empreendedor, gerando emprego e prosperidade.' },
-  { when: '2025', who: 'Aurora Premium', text: 'Em 2025, lancei o Aurora Premium, sistema de agendamento e gestão para salões, barbearias, clínicas, spas e pet shops. É a tecnologia de grande empresa organizada para o dia a dia de quem atende cliente com hora marcada.' },
+  { when: 'Roque', who: 'Roque Business Evolution', html: 'Fundei a <a href="https://roquebusinessevolution.com/">Roque Business Evolution</a> para levar tecnologia, inteligência e transformação digital ao pequeno e médio empreendedor, gerando emprego e prosperidade. Por ela, passei por manufatura, pelos lançamentos de Google e Apple e pelo desenvolvimento de sistemas para municípios.' },
+  { when: '2025', who: 'Aurora Premium', html: 'Em 2025, lancei o <a href="https://aurorapremium.com/">Aurora Premium</a>, sistema de agendamento e gestão para salões, barbearias, clínicas, spas e pet shops. É a tecnologia de grande empresa organizada para o dia a dia de quem atende cliente com hora marcada.' },
+  { when: 'EngageBot', who: 'Atendimento com IA', html: `Criei o <a href="${ENGAGEBOT}">EngageBot</a>, atendimento com inteligência artificial no WhatsApp e no site: ele responde clientes, aprende com o conteúdo da empresa e organiza as conversas em um só lugar.` },
+  { when: 'Hoje', who: 'Agência de IA', html: 'Hoje, a <a href="https://roquebusinessevolution.com/agencia-de-ia/">Roque Business Evolution é uma agência de IA</a> (AgencyAI): agentes de inteligência artificial, automação de processos, sites com SEO e software sob medida, junto com os produtos Aurora Premium e EngageBot.' },
 ];
-const timeline = `<ol class="tl pre" data-tl>
-${MARCOS.map((m, i) => `<li${i === 0 ? ' class="open"' : ''}><button type="button" class="tl-btn" aria-expanded="${i === 0}" aria-controls="tl-p${i + 1}"><span class="tl-dot" aria-hidden="true"></span><span class="tl-when">${esc(m.when)}</span><span class="tl-who">${esc(m.who)}</span></button><div class="tl-panel" id="tl-p${i + 1}"><p>${esc(m.text)}</p></div></li>`).join('\n')}
+const timeline = `<ol class="tl pre" data-tl style="--n:${MARCOS.length}">
+${MARCOS.map((m, i) => `<li${i === 0 ? ' class="open"' : ''} style="--i:${i}"><button type="button" class="tl-btn" aria-expanded="${i === 0}" aria-controls="tl-p${i + 1}"><span class="tl-dot" aria-hidden="true"></span><span class="tl-when">${esc(m.when)}</span><span class="tl-who">${esc(m.who)}</span></button><div class="tl-panel" id="tl-p${i + 1}"><p>${m.html || esc(m.text)}</p></div></li>`).join('\n')}
 </ol>`;
 const TL_JS = `
 (function () {
@@ -72,7 +76,7 @@ const TL_JS = `
   // o fio dourado se desenha uma vez, quando a linha do tempo entra na tela (sem JS ou com movimento reduzido: já desenhado)
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || !('IntersectionObserver' in window)) { tl.classList.remove('pre'); return; }
-  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { tl.classList.add('drawn'); setTimeout(function () { tl.classList.remove('pre'); }, 1800); io.disconnect(); } }); }, { threshold: 0.25 });
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { tl.classList.add('drawn'); setTimeout(function () { tl.classList.remove('pre'); }, 3200); io.disconnect(); } }); }, { threshold: 0.25 });
   io.observe(tl);
 })();`;
 
@@ -87,7 +91,7 @@ const home = {
 <section class="hero" aria-labelledby="h1">
   <div class="hero-in">
     <div class="hero-text">
-      <h1 id="h1">Viviane Roque: tecnologia de grande empresa a serviço de quem empreende</h1>
+      <h1 id="h1">Tecnologia de grande empresa a serviço de quem empreende</h1>
       <p class="lead">Sou Viviane Roque, especialista em transformação digital e fundadora do Aurora Premium. Trabalho com tecnologia e operações desde 1998 e hoje levo esse repertório ao pequeno e médio empreendedor.</p>
       <div class="btns">${cta()} <a class="btn ghost" href="/quem-sou/">Conhecer minha trajetória</a></div>
     </div>
@@ -97,8 +101,8 @@ const home = {
 
 <section class="sec dark tl-sec" id="trajetoria" aria-labelledby="tl-h">
   <div class="wrap">
-    <h2 id="tl-h">De 1998 a 2025: da telefonia analógica à inteligência artificial</h2>
-    <p class="tl-intro">Minha trajetória em seis marcos. Escolha um para ler mais.</p>
+    <h2 id="tl-h">De 1998 até hoje: da telefonia analógica à agência de IA</h2>
+    <p class="tl-intro">Minha trajetória em sete marcos, de 1998 até hoje. Escolha um para ler mais.</p>
     <!-- REVISAR: aguardando a Viviane confirmar os anos dos marcos intermediários (Ernst & Young, NEC, manufatura e Roque). Só 1998 e 2025 são certos. -->
     ${timeline}
   </div>
@@ -106,7 +110,7 @@ const home = {
 
 <section class="sec paper" id="o-que-construo" aria-labelledby="build-h">
   <div class="wrap">
-    <h2 id="build-h">O que eu construo hoje</h2>
+    <h2 id="build-h">O que eu construo hoje: agência de IA, Aurora Premium e EngageBot</h2>
     <p class="read">Três frentes que nasceram da mesma ideia: tecnologia que funciona no dia a dia de quem empreende.</p>
     ${BUILD}
   </div>
@@ -114,7 +118,7 @@ const home = {
 
 <section class="sec studio" id="no-que-acredito" aria-labelledby="bel-h">
   <div class="wrap">
-    <h2 id="bel-h">No que eu acredito</h2>
+    <h2 id="bel-h">No que Viviane Roque acredita sobre gestão e tecnologia</h2>
     <!-- REVISAR: frases vindas do site antigo e do posicionamento atual; a Viviane confirma ou troca. -->
     <ul class="beliefs">
       <li>Tecnologia de grande empresa também é para quem empreende.</li>
@@ -127,7 +131,7 @@ const home = {
 
 <section class="sec dark" id="conversar" aria-labelledby="cta-h">
   <div class="wrap">
-    <h2 id="cta-h">Vamos conversar</h2>
+    <h2 id="cta-h">Fale com Viviane Roque</h2>
     <p class="read">Se você empreende, lidera uma equipe ou quer levar tecnologia para a sua empresa, me chame no WhatsApp. É a forma mais rápida de falar comigo.</p>
     <div class="btns">${cta()}</div>
   </div>
@@ -138,12 +142,15 @@ const home = {
 // ------------------------------------------------------------------ QUEM SOU
 const quemFaq = faq([
   { q: 'Quem é Viviane Roque?', a: '<p>Viviane Roque é especialista em transformação digital, gestão de operações e inteligência artificial, fundadora da Roque Business Evolution e do Aurora Premium. Trabalha com tecnologia desde 1998.</p>' },
-  { q: 'Qual é a trajetória de Viviane Roque?', a: '<p>Começou em 1998 na BCP, depois Claro, estruturando operações digitais. Passou pela Ernst & Young e pela NEC, atuou no PMO da Arena Fonte Nova na Copa de 2014 e hoje conduz a Roque Business Evolution e o Aurora Premium.</p>' },
+  { q: 'Qual é a trajetória de Viviane Roque?', a: '<p>Começou em 1998 na BCP, depois Claro, estruturando operações digitais. Passou pela Ernst & Young e pela NEC, atuou no PMO da Arena Fonte Nova na Copa de 2014, fundou a Roque Business Evolution, lançou o Aurora Premium em 2025 e criou o EngageBot. Hoje conduz uma agência de IA.</p>' },
   { q: 'O que é a Roque Business Evolution?', a: '<p>É a agência de IA, criação de sites, desenvolvimento de software e transformação digital fundada por Viviane Roque. O site é <a href="https://roquebusinessevolution.com/">roquebusinessevolution.com</a>.</p>' },
+  { q: 'Viviane Roque trabalha com inteligência artificial?', a: '<p>Sim. Pela Roque Business Evolution, Viviane Roque conduz uma <a href="https://roquebusinessevolution.com/agencia-de-ia/">agência de IA</a> que cria agentes de inteligência artificial, automações e sites com SEO, e criou o EngageBot, atendimento com IA no WhatsApp.</p>' },
   { q: 'O que é o Aurora Premium?', a: '<p>É um sistema de agendamento e gestão para salões, barbearias, clínicas, spas e pet shops, lançado por Viviane Roque em 2025. O site é <a href="https://aurorapremium.com/">aurorapremium.com</a>.</p>' },
+  { q: 'Quem criou o Aurora Premium e o EngageBot?', a: '<p>Os dois produtos foram criados por Viviane Roque pela Roque Business Evolution: o <a href="https://aurorapremium.com/">Aurora Premium</a>, lançado em 2025, é um sistema de agendamento e gestão, e o <a href="https://engagebot.com.br/">EngageBot</a> é o atendimento com IA no WhatsApp e no site.</p>' },
+  { q: 'Qual é a formação de Viviane Roque?', a: '<p>Viviane Roque tem MBA em Business Intelligence (Columbia), Executive MBA em Data Science &amp; AI (MIT) e Executive MBA (FIA), além das certificações PMP, SAFe Agilist, PSM e Six Sigma Master Black Belt.</p>' },
   { q: 'Viviane Roque faz mentoria?', a: '<p>Sim, para líderes e empresários. A página de <a href="/trabalhe-comigo/">mentoria</a> explica como funciona, e o primeiro passo é uma conversa de alinhamento.</p>' },
   { q: 'Como falar com Viviane Roque?', a: `<p>Pelo WhatsApp <a href="${wa(WA_DEFAULT)}" rel="noopener">+55 11 97396-7161</a>. Também está no <a href="${SITE.linkedin}" rel="noopener me">LinkedIn</a> e no <a href="${SITE.instagram}" rel="noopener me">Instagram</a>.</p>` },
-], { pagePath: '/quem-sou/' });
+], { heading: 'Perguntas frequentes sobre Viviane Roque', pagePath: '/quem-sou/' });
 const quemCrumb = [{ name: 'Início', path: '/' }, { name: 'Quem sou', path: '/quem-sou/' }];
 const quem = {
   path: '/quem-sou/',
@@ -162,13 +169,13 @@ const quem = {
 <section class="sec paper" id="trajetoria" aria-labelledby="traj-h">
   <div class="wrap">
     <div class="prose">
-      <h2 id="traj-h">A trajetória de Viviane Roque</h2>
+      <h2 id="traj-h">Trajetória profissional de Viviane Roque, de 1998 até hoje</h2>
+      <figure class="photo photo-r"><img src="/img/viviane-roque-escritorio-600w.webp" srcset="/img/viviane-roque-escritorio-400w.webp 400w, /img/viviane-roque-escritorio-600w.webp 600w" sizes="(min-width: 760px) 260px, 100vw" width="600" height="600" alt="Viviane Roque em seu escritório, com livros ao fundo" loading="lazy" decoding="async"></figure>
       <!-- REVISAR: texto definitivo da história virá em pacote da direção de marketing; este é o texto-base com os fatos confirmados. -->
       <p>Comecei em tecnologia em 1998, na BCP, que depois se tornou a Claro. Naquele tempo só existia telefonia analógica, e meu trabalho era estruturar operações digitais. Acompanhei a evolução das redes até o 4G.</p>
       <p>Passei pela Ernst & Young, onde trabalhei na estrutura financeira de bancos e bandeiras de cartão. Depois, na NEC, colaborei na expansão de clientes, em telecomunicações e novas tecnologias. Atuei no PMO da Arena Fonte Nova, para a Copa de 2014, e como advisor na Arena Pernambuco.</p>
-      <p>Também trabalhei em manufatura, nos lançamentos de Google e Apple e no desenvolvimento de sistemas para municípios.</p>
-      <p>Fundei a <a href="https://roquebusinessevolution.com/">Roque Business Evolution</a>, agência de IA, sites e software, e em 2025 lancei o <a href="https://aurorapremium.com/">Aurora Premium</a>, sistema de agendamento e gestão para negócios de serviço.</p>
-      <h2>Por que levo tecnologia ao pequeno e médio empreendedor</h2>
+            <p>Fundei a <a href="https://roquebusinessevolution.com/">Roque Business Evolution</a>, e por ela passei por manufatura, pelos lançamentos de Google e Apple e pelo desenvolvimento de sistemas para municípios. Em 2025 lancei o <a href="https://aurorapremium.com/">Aurora Premium</a>, sistema de agendamento e gestão para negócios de serviço. Depois veio o <a href="https://engagebot.com.br/">EngageBot</a>, atendimento com IA no WhatsApp e no site. Hoje a Roque Business Evolution é uma <a href="https://roquebusinessevolution.com/agencia-de-ia/">agência de IA</a> (AgencyAI).</p>
+      <h2>Por que Viviane Roque leva tecnologia ao pequeno e médio empreendedor</h2>
       <p>Grandes empresas sempre tiveram acesso à tecnologia, à inteligência e à transformação digital. Quem empreende em um salão, em uma clínica ou em uma loja merece o mesmo nível de ferramenta, no tamanho do seu dia a dia. Meu trabalho é fazer essa ponte, gerando emprego e prosperidade.</p>
       <p>Por isso escrevo e construo de um jeito simples: a tecnologia está a serviço de quem empreende, e não o contrário.</p>
     </div>
@@ -177,14 +184,14 @@ const quem = {
 
 <section class="sec studio" id="o-que-construo" aria-labelledby="build-h">
   <div class="wrap">
-    <h2 id="build-h">O que construo hoje</h2>
+    <h2 id="build-h">O que Viviane Roque constrói hoje: agência de IA, sistema de agendamento e atendimento com IA</h2>
     ${BUILD}
   </div>
 </section>
 
 <section class="sec paper" id="formacao" aria-labelledby="form-h">
   <div class="wrap">
-    <h2 id="form-h">Certificações e formação</h2>
+    <h2 id="form-h">Certificações e formação de Viviane Roque</h2>
     <!-- REVISAR: confirmar nomes exatos das certificações e dos programas. -->
     <div class="two">
       <div>
@@ -203,7 +210,7 @@ ${quemFaq.html}
 
 <section class="sec dark" id="conversar" aria-labelledby="cta-h">
   <div class="wrap">
-    <h2 id="cta-h">Vamos conversar</h2>
+    <h2 id="cta-h">Converse com Viviane Roque</h2>
     <p class="read">Para falar comigo, o caminho mais rápido é o WhatsApp.</p>
     <div class="btns">${cta()}</div>
   </div>
@@ -230,7 +237,7 @@ const atua = {
 <section class="sec paper" id="empresas" aria-labelledby="emp-h">
   <div class="wrap">
     <div class="prose">
-      <h2 id="emp-h">Com empresas, pela Roque Business Evolution</h2>
+      <h2 id="emp-h">Atuação com empresas: consultoria pela Roque Business Evolution</h2>
       <p>A <a href="https://roquebusinessevolution.com/">Roque Business Evolution</a> é a agência de IA, criação de sites, desenvolvimento de software e transformação digital que fundei. Atuo em frentes como estas:</p>
       <!-- REVISAR: lista mantida do site antigo; a Viviane confirma o posicionamento. -->
       <ul>
@@ -247,7 +254,7 @@ const atua = {
 
 <section class="sec studio" id="como-trabalho" aria-labelledby="como-h">
   <div class="wrap">
-    <h2 id="como-h">Como o trabalho acontece</h2>
+    <h2 id="como-h">Como a consultoria de Viviane Roque acontece</h2>
     <ol class="steps">
       <li><b>Diagnóstico</b>Entendo a empresa, os processos, os sistemas e os principais gargalos.</li>
       <li><b>Planejamento</b>Defino objetivos, indicadores e um roteiro de implementação.</li>
@@ -260,7 +267,7 @@ const atua = {
 <section class="sec paper" id="liderancas" aria-labelledby="lid-h">
   <div class="wrap">
     <div class="prose">
-      <h2 id="lid-h">Com líderes e empresários, em mentoria</h2>
+      <h2 id="lid-h">Atuação com líderes e empresários: mentoria individual</h2>
       <p>Para quem lidera uma equipe ou um negócio e quer direção estratégica e execução consistente, ofereço mentoria individual. O trabalho combina diagnóstico, plano de ação e acompanhamento.</p>
       <p><a href="/trabalhe-comigo/">Conheça a mentoria</a>.</p>
     </div>
@@ -269,7 +276,7 @@ const atua = {
 
 <section class="sec dark" id="conversar" aria-labelledby="cta-h">
   <div class="wrap">
-    <h2 id="cta-h">Vamos conversar sobre o seu caso</h2>
+    <h2 id="cta-h">Converse com Viviane Roque sobre o seu caso</h2>
     <p class="read">Conte em poucas linhas o que você precisa. Respondo pelo WhatsApp.</p>
     <div class="btns">${cta('Falar no WhatsApp', 'Olá, Viviane! Quero conversar sobre a atuação com empresas ou lideranças.')}</div>
   </div>
@@ -289,6 +296,7 @@ const ment = {
 <section class="page-hero" aria-labelledby="h1">
   <div class="wrap">
     ${crumbHtml(mentCrumb)}
+    <figure class="photo photo-r"><img src="/img/viviane-roque-escritorio-600w.webp" srcset="/img/viviane-roque-escritorio-400w.webp 400w, /img/viviane-roque-escritorio-600w.webp 600w" sizes="(min-width: 760px) 260px, 100vw" width="600" height="600" alt="Viviane Roque em seu escritório, com livros ao fundo" loading="lazy" decoding="async"></figure>
     <h1 id="h1">Mentoria com Viviane Roque</h1>
     <p class="lead">A mentoria com Viviane Roque é um acompanhamento individual para líderes e empresários que querem direção estratégica e execução consistente. O primeiro passo é uma conversa de alinhamento.</p>
   </div>
@@ -297,7 +305,7 @@ const ment = {
 <section class="sec paper" id="para-quem" aria-labelledby="pq-h">
   <div class="wrap">
     <div class="prose">
-      <h2 id="pq-h">Para quem é a mentoria</h2>
+      <h2 id="pq-h">Para quem é a mentoria com Viviane Roque</h2>
       <p>Para quem já entendeu que o crescimento do negócio passa pela forma de decidir e de liderar, e está pronto para fazer o trabalho com constância.</p>
       <ul>
         <li>Líderes e executivos que querem clareza e direção estratégica.</li>
@@ -324,7 +332,7 @@ const ment = {
 
 <section class="sec paper" id="o-que-muda" aria-labelledby="muda-h">
   <div class="wrap">
-    <h2 id="muda-h">O que muda ao longo do processo</h2>
+    <h2 id="muda-h">O que muda ao longo da mentoria</h2>
     <ul class="facts read">
       <li><b>Clareza.</b> Menos ruído e mais confiança para decidir.</li>
       <li><b>Direção.</b> Você sabe aonde quer chegar e como.</li>
@@ -337,7 +345,7 @@ const ment = {
 <section class="sec studio" id="criterio" aria-labelledby="crit-h">
   <div class="wrap">
     <div class="prose">
-      <h2 id="crit-h">Critério de entrada</h2>
+      <h2 id="crit-h">Critério de entrada na mentoria</h2>
       <p>Este não é um processo para todos. Trabalho com quem está pronto para a transformação. Se você se identifica com os pontos abaixo, podemos ter um bom encaixe:</p>
       <ul>
         <li>Compromisso real com a própria transformação.</li>
@@ -352,7 +360,7 @@ const ment = {
 
 <section class="sec dark" id="proximo-passo" aria-labelledby="pp-h">
   <div class="wrap">
-    <h2 id="pp-h">Próximo passo: uma conversa de alinhamento</h2>
+    <h2 id="pp-h">Mentoria: o próximo passo é uma conversa de alinhamento</h2>
     <p class="read">Essa conversa serve para entender se há encaixe entre o que você busca e o que eu ofereço.</p>
     <div class="btns">${cta('Solicitar conversa de alinhamento', 'Olá, Viviane! Quero solicitar uma conversa de alinhamento sobre a mentoria.')}</div>
   </div>
@@ -379,7 +387,7 @@ const emp = {
 
 <section class="sec paper" id="o-que-faz" aria-labelledby="faz-h">
   <div class="wrap">
-    <h2 id="faz-h">O que a Roque Business Evolution faz</h2>
+    <h2 id="faz-h">O que a Roque Business Evolution, de Viviane Roque, faz pelas empresas</h2>
     <p class="read">A Roque Business Evolution reúne estratégia, tecnologia e inteligência artificial para empresas que querem evoluir. As principais frentes:</p>
     <ul class="facts read">
       <li><b><a href="https://roquebusinessevolution.com/agencia-de-ia/">Agência de IA</a>.</b> Agentes de inteligência artificial e automação de processos.</li>
@@ -393,14 +401,14 @@ const emp = {
 
 <section class="sec studio" id="o-que-construo" aria-labelledby="build-h">
   <div class="wrap">
-    <h2 id="build-h">O que eu construo hoje</h2>
+    <h2 id="build-h">O que eu construo hoje: agência de IA, Aurora Premium e EngageBot</h2>
     ${BUILD}
   </div>
 </section>
 
 <section class="sec dark" id="conversar" aria-labelledby="cta-h">
   <div class="wrap">
-    <h2 id="cta-h">Vamos conversar sobre a sua empresa</h2>
+    <h2 id="cta-h">Converse com Viviane Roque sobre a sua empresa</h2>
     <p class="read">Se a sua empresa precisa de direção, governança ou transformação digital, me chame no WhatsApp.</p>
     <div class="btns">${cta('Falar no WhatsApp', 'Olá, Viviane! Quero conversar sobre a minha empresa.')}</div>
   </div>
@@ -436,7 +444,7 @@ const cont = {
 
 <section class="sec paper" id="temas" aria-labelledby="temas-h">
   <div class="wrap">
-    <h2 id="temas-h">Temas dos próximos artigos</h2>
+    <h2 id="temas-h">Temas dos próximos artigos de Viviane Roque</h2>
     <ul class="list-art">
 ${ARTIGOS.map(([t, d]) => `      <li><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join('\n')}
     </ul>
@@ -445,7 +453,7 @@ ${ARTIGOS.map(([t, d]) => `      <li><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).j
 
 <section class="sec dark" id="conversar" aria-labelledby="cta-h">
   <div class="wrap">
-    <h2 id="cta-h">Quer ser avisado quando os artigos saírem?</h2>
+    <h2 id="cta-h">Quer ser avisado dos novos artigos de Viviane Roque?</h2>
     <p class="read">Me chame no WhatsApp e eu aviso quando cada artigo for publicado.</p>
     <div class="btns">${cta('Falar no WhatsApp', 'Olá, Viviane! Quero ser avisado quando os artigos forem publicados.')}</div>
   </div>
@@ -472,7 +480,7 @@ const contato = {
 
 <section class="sec paper" id="canais" aria-labelledby="canais-h">
   <div class="wrap">
-    <h2 id="canais-h">Outros canais</h2>
+    <h2 id="canais-h">Outros canais para falar com Viviane Roque</h2>
     <!-- REVISAR: nenhum e-mail publicado até a Viviane confirmar qual usar. -->
     <ul class="facts read">
       <li><b>LinkedIn.</b> <a href="${SITE.linkedin}" rel="noopener me">linkedin.com/in/vivianepereirambas</a></li>
@@ -490,7 +498,7 @@ const privCrumb = [{ name: 'Início', path: '/' }, { name: 'Política de Privaci
 const priv = {
   path: '/politica-de-privacidade/',
   title: 'Política de Privacidade | Viviane Roque',
-  description: 'Como o site viviroque.com.br trata dados pessoais, em conformidade com a LGPD: quais dados, para quê, por quanto tempo e como exercer seus direitos.',
+  description: 'Política de privacidade do site viviroque.com.br: quais dados pessoais são tratados, para quê, por quanto tempo e como exercer seus direitos (LGPD).',
   image: OG('home'),
   body: `
 <section class="page-hero" aria-labelledby="h1">

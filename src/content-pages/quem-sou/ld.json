@@ -27,6 +27,16 @@
     "https://www.linkedin.com/in/vivianepereirambas/",
     "https://www.instagram.com/viviroqueoficial/"
    ],
+   "knowsAbout": [
+    "Transformação digital",
+    "Gestão de operações",
+    "Inteligência artificial para empresas",
+    "Automação de processos",
+    "Governança e PMO",
+    "Gestão de projetos",
+    "Mentoria para líderes e empresários",
+    "Sistemas de agendamento e gestão"
+   ],
    "worksFor": {
     "@id": "https://roquebusinessevolution.com/#org"
    },
@@ -101,7 +111,7 @@
      "name": "Qual é a trajetória de Viviane Roque?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Começou em 1998 na BCP, depois Claro, estruturando operações digitais. Passou pela Ernst & Young e pela NEC, atuou no PMO da Arena Fonte Nova na Copa de 2014 e hoje conduz a Roque Business Evolution e o Aurora Premium."
+      "text": "Começou em 1998 na BCP, depois Claro, estruturando operações digitais. Passou pela Ernst & Young e pela NEC, atuou no PMO da Arena Fonte Nova na Copa de 2014, fundou a Roque Business Evolution, lançou o Aurora Premium em 2025 e criou o EngageBot. Hoje conduz uma agência de IA."
      }
     },
     {
@@ -114,10 +124,34 @@
     },
     {
      "@type": "Question",
+     "name": "Viviane Roque trabalha com inteligência artificial?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim. Pela Roque Business Evolution, Viviane Roque conduz uma agência de IA que cria agentes de inteligência artificial, automações e sites com SEO, e criou o EngageBot, atendimento com IA no WhatsApp."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "O que é o Aurora Premium?",
      "acceptedAnswer": {
       "@type": "Answer",
       "text": "É um sistema de agendamento e gestão para salões, barbearias, clínicas, spas e pet shops, lançado por Viviane Roque em 2025. O site é aurorapremium.com ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Quem criou o Aurora Premium e o EngageBot?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Os dois produtos foram criados por Viviane Roque pela Roque Business Evolution: o Aurora Premium , lançado em 2025, é um sistema de agendamento e gestão, e o EngageBot é o atendimento com IA no WhatsApp e no site."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Qual é a formação de Viviane Roque?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Viviane Roque tem MBA em Business Intelligence (Columbia), Executive MBA em Data Science & AI (MIT) e Executive MBA (FIA), além das certificações PMP, SAFe Agilist, PSM e Six Sigma Master Black Belt."
      }
     },
     {

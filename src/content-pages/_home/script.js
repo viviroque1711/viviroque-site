@@ -19,6 +19,6 @@
   // o fio dourado se desenha uma vez, quando a linha do tempo entra na tela (sem JS ou com movimento reduzido: já desenhado)
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || !('IntersectionObserver' in window)) { tl.classList.remove('pre'); return; }
-  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { tl.classList.add('drawn'); setTimeout(function () { tl.classList.remove('pre'); }, 1800); io.disconnect(); } }); }, { threshold: 0.25 });
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { tl.classList.add('drawn'); setTimeout(function () { tl.classList.remove('pre'); }, 3200); io.disconnect(); } }); }, { threshold: 0.25 });
   io.observe(tl);
 })();

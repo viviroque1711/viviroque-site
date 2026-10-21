@@ -10,6 +10,7 @@ import '../styles/site.css';
 import literata400 from '@fontsource/literata/files/literata-latin-400-normal.woff2?url';
 import literata600 from '@fontsource/literata/files/literata-latin-600-normal.woff2?url';
 import schibsted500 from '@fontsource/schibsted-grotesk/files/schibsted-grotesk-latin-500-normal.woff2?url';
+import motion from '../scripts/motion.js?raw';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
@@ -45,6 +46,7 @@ if (process.env.SITE_ENV === 'staging') {
 {css && <style is:inline set:html={css}></style>}
 </head>
 <body>
+<div class="rd" aria-hidden="true"></div>
 <SiteHeader />
 <main id="conteudo" tabindex="-1">
 <Fragment set:html={body} />
@@ -52,5 +54,6 @@ if (process.env.SITE_ENV === 'staging') {
 <SiteFooter updated={updated} />
 <WhatsAppFloat />
 {js && <script is:inline set:html={js}></script>}
+<script is:inline set:html={motion}></script>
 </body>
 </html>

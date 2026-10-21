@@ -43,17 +43,5 @@ for (const [k, [t, s]] of Object.entries(PAGES)) {
   await pg.evaluate(() => document.fonts.ready);
   await pg.screenshot({ path: path.join(root, 'public', 'og', k + '.jpg'), type: 'jpeg', quality: 82 });
 }
-// favicon: monograma VR em Literata sobre grafite (o ouro fica só na linha do tempo e no símbolo)
-await pg.setViewport({ width: 512, height: 512 });
-await pg.setContent(`<!doctype html><meta charset="utf-8"><style>${css}body{margin:0;width:512px;height:512px;background:#262A31;display:grid;place-items:center}b{font:600 270px/1 "Literata";color:#fff;letter-spacing:-12px}</style><b>VR</b>`, { waitUntil: 'load', timeout: 60000 });
-await pg.evaluate(() => document.fonts.ready);
-const icon = await pg.screenshot({ type: 'png' });
 await b.close();
-const pub = path.join(root, 'public');
-for (const [n, s] of [['android-chrome-512x512', 512], ['android-chrome-192x192', 192], ['apple-touch-icon', 180], ['favicon-32x32', 32], ['favicon-16x16', 16]]) await sharp(icon).resize(s, s).png().toFile(path.join(pub, n + '.png'));
-// favicon.ico (contêiner ICO com PNG 48x48 embutido)
-const png48 = await sharp(icon).resize(48, 48).png().toBuffer();
-const hdr = Buffer.alloc(22); hdr.writeUInt16LE(0, 0); hdr.writeUInt16LE(1, 2); hdr.writeUInt16LE(1, 4);
-hdr.writeUInt8(48, 6); hdr.writeUInt8(48, 7); hdr.writeUInt16LE(1, 10); hdr.writeUInt16LE(32, 12); hdr.writeUInt32LE(png48.length, 14); hdr.writeUInt32LE(22, 18);
-fs.writeFileSync(path.join(pub, 'favicon.ico'), Buffer.concat([hdr, png48]));
-console.log('og e ícones gerados');
+console.log('imagens de compartilhamento geradas (ícones: node scripts/make-icons.mjs)');
