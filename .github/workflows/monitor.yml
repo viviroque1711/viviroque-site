@@ -1,0 +1,22 @@
+name: Monitor do site publicado
+
+# Todo dia, às 10h (horário de Brasília), confere o site no ar. Só roda depois da virada do domínio:
+# defina a variável do repositório MONITOR_ENABLED=true (Settings > Secrets and variables > Actions > Variables).
+on:
+  schedule:
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  monitor:
+    if: ${{ vars.MONITOR_ENABLED == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/monitor.mjs

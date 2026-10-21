@@ -1,0 +1,30 @@
+---
+// Página servida com status 404 real para qualquer endereço inexistente (GitHub Pages usa este arquivo).
+import '@fontsource/literata/latin-400.css';
+import '@fontsource/literata/latin-600.css';
+import '@fontsource/schibsted-grotesk/latin-600.css';
+import '../styles/site.css';
+import { SITE } from '../data/site.mjs';
+import { NAV } from '../data/nav.mjs';
+---
+<!doctype html>
+<html lang={SITE.lang}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Página não encontrada | Viviane Roque</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+</head>
+<body class="nf">
+<main class="nf-in" id="conteudo">
+  <h1>Esta página não existe</h1>
+  <p>O endereço que você abriu não foi encontrado. Volte para a página inicial ou escolha um caminho abaixo.</p>
+  <p><a class="btn" href="/">Ir para a página inicial</a></p>
+  <ul class="nf-links">
+    {NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+  </ul>
+</main>
+</body>
+</html>

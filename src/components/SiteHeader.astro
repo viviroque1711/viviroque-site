@@ -1,0 +1,35 @@
+---
+// Cabeçalho único do site: uma barra só. Sem JavaScript o menu fica aberto (links normais);
+// com JavaScript, abaixo de 1024 px vira botão.
+import { NAV } from '../data/nav.mjs';
+import { SITE } from '../data/site.mjs';
+import { u } from '../lib/url.mjs';
+---
+<a class="skip" href="#conteudo">Ir para o conteúdo</a>
+<header class="hd" data-hd>
+  <div class="hd-bar">
+    <a class="hd-name" href={u('/')}>Viviane Roque</a>
+    <button type="button" class="hd-burger" aria-expanded="false" aria-controls="hd-nav" data-burger>
+      <span class="hd-burger-ico" aria-hidden="true"><i></i><i></i></span>
+      <span class="hd-burger-txt">Menu</span>
+    </button>
+    <nav class="hd-nav" id="hd-nav" aria-label="Principal">
+      <ul>
+        {NAV.map((n) => <li><a href={u(n.href)} data-path={n.href}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+</header>
+<script is:inline define:vars={{ repo: SITE.repo }}>
+  (function () {
+    var root = document.documentElement; root.classList.add('js');
+    var btn = document.querySelector('[data-burger]'), nav = document.getElementById('hd-nav');
+    if (!btn || !nav) return;
+    function set(open) { btn.setAttribute('aria-expanded', open ? 'true' : 'false'); nav.classList.toggle('open', open); }
+    btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') { set(false); btn.focus(); } });
+    document.addEventListener('click', function (e) { if (btn.getAttribute('aria-expanded') === 'true' && !nav.contains(e.target) && !btn.contains(e.target)) set(false); });
+    var here = location.pathname.replace(new RegExp('^/' + repo), '');
+    nav.querySelectorAll('a[data-path]').forEach(function (a) { if (here.indexOf(a.getAttribute('data-path')) === 0) a.setAttribute('aria-current', 'page'); });
+  })();
+</script>

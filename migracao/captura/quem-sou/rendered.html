@@ -1,0 +1,165 @@
+<html lang="en"><head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/svg+xml" href="/vite.svg">
+		<meta name="generator" content="Hostinger Horizons">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Quem Sou - Viviane Roque</title>
+		<script type="module" crossorigin="" src="/assets/index-dbea1b3e.js"></script>
+		<link rel="stylesheet" href="/assets/index-33000648.css">
+		<script type="module">
+window.onerror = (message, source, lineno, colno, errorObj) => {
+	const errorDetails = errorObj ? JSON.stringify({
+		name: errorObj.name,
+		message: errorObj.message,
+		stack: errorObj.stack,
+		source,
+		lineno,
+		colno,
+	}) : null;
+
+	window.parent.postMessage({
+		type: 'horizons-runtime-error',
+		message,
+		error: errorDetails
+	}, '*');
+};
+</script>
+		<script type="module">
+const observer = new MutationObserver((mutations) => {
+	for (const mutation of mutations) {
+		for (const addedNode of mutation.addedNodes) {
+			if (
+				addedNode.nodeType === Node.ELEMENT_NODE &&
+				(
+					addedNode.tagName?.toLowerCase() === 'vite-error-overlay' ||
+					addedNode.classList?.contains('backdrop')
+				)
+			) {
+				handleViteOverlay(addedNode);
+			}
+		}
+	}
+});
+
+observer.observe(document.documentElement, {
+	childList: true,
+	subtree: true
+});
+
+function handleViteOverlay(node) {
+	if (!node.shadowRoot) {
+		return;
+	}
+
+	const backdrop = node.shadowRoot.querySelector('.backdrop');
+
+	if (backdrop) {
+		const overlayHtml = backdrop.outerHTML;
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(overlayHtml, 'text/html');
+		const messageBodyElement = doc.querySelector('.message-body');
+		const fileElement = doc.querySelector('.file');
+		const messageText = messageBodyElement ? messageBodyElement.textContent.trim() : '';
+		const fileText = fileElement ? fileElement.textContent.trim() : '';
+		const error = messageText + (fileText ? ' File:' + fileText : '');
+
+		window.parent.postMessage({
+			type: 'horizons-vite-error',
+			error,
+		}, '*');
+	}
+}
+</script>
+		<script type="module">
+const originalConsoleError = console.error;
+console.error = function(...args) {
+	originalConsoleError.apply(console, args);
+
+	let errorString = '';
+
+	for (let i = 0; i < args.length; i++) {
+		const arg = args[i];
+		if (arg instanceof Error) {
+			errorString = arg.stack || `${arg.name}: ${arg.message}`;
+			break;
+		}
+	}
+
+	if (!errorString) {
+		errorString = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : String(arg)).join(' ');
+	}
+
+	window.parent.postMessage({
+		type: 'horizons-console-error',
+		error: errorString
+	}, '*');
+};
+</script>
+		<script type="module">
+const originalFetch = window.fetch;
+
+window.fetch = function(...args) {
+	const url = args[0] instanceof Request ? args[0].url : args[0];
+
+	// Skip WebSocket URLs
+	if (url.startsWith('ws:') || url.startsWith('wss:')) {
+		return originalFetch.apply(this, args);
+	}
+
+	return originalFetch.apply(this, args)
+		.then(async response => {
+			const contentType = response.headers.get('Content-Type') || '';
+
+			// Exclude HTML document responses
+			const isDocumentResponse =
+				contentType.includes('text/html') ||
+				contentType.includes('application/xhtml+xml');
+
+			if (!response.ok && !isDocumentResponse) {
+					const responseClone = response.clone();
+					const errorFromRes = await responseClone.text();
+					const requestUrl = response.url;
+					console.error(`Fetch error from ${requestUrl}: ${errorFromRes}`);
+			}
+
+			return response;
+		})
+		.catch(error => {
+			if (!url.match(/.html?$/i)) {
+				console.error(error);
+			}
+
+			throw error;
+		});
+};
+</script>
+		<script type="module">
+if (window.navigation && window.self !== window.top) {
+	window.navigation.addEventListener('navigate', (event) => {
+		const url = event.destination.url;
+
+		try {
+			const destinationUrl = new URL(url);
+			const destinationOrigin = destinationUrl.origin;
+			const currentOrigin = window.location.origin;
+
+			if (destinationOrigin === currentOrigin) {
+				return;
+			}
+		} catch (error) {
+			return;
+		}
+
+		window.parent.postMessage({
+			type: 'horizons-navigation-error',
+			url,
+		}, '*');
+	});
+}
+</script>
+	<meta name="description" content="Conheça a trajetória, filosofia e valores de Viviane Roque - Estrategista, mentora e executiva com experiência em transformação digital e desenvolvimento de lideranças." data-react-helmet="true"></head>
+	<body>
+		<div id="root"><div class="min-h-screen bg-black text-white"><nav class="fixed top-0 w-full bg-black/95 backdrop-blur-md z-50 border-b border-gold/10"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-20"><a class="flex items-center" href="/"><span class="font-serif text-2xl font-bold text-gold">Viviane Roque</span></a><div class="hidden lg:flex items-center space-x-8"><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/">Home</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-gold" href="/quem-sou">Quem Sou</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/minha-atuacao">Minha Atuação</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/trabalhe-comigo">Trabalhe Comigo</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/para-empresas">Para Empresas</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/conteudos">Conteúdos</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/contato">Contato</a></div><button class="lg:hidden text-white hover:text-gold transition-colors duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div></nav><div class="pt-20 bg-black"><section class="py-24 bg-gradient-to-b from-black to-black/95"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"><div style="opacity: 1; transform: none;"><img src="https://horizons-cdn.hostinger.com/d213bbf6-70eb-4053-a506-9f2d0fb8b863/598d560ba0c94416733c9fbe270c5456.png" alt="Viviane Roque - Estrategista e Mentora" class="rounded-2xl shadow-2xl w-full object-cover" style="max-height: 600px;"></div><div style="opacity: 1; transform: none;"><h1 class="font-serif text-4xl sm:text-5xl font-bold text-white mb-6">Quem Sou</h1><p class="font-sans text-xl text-gold mb-6">Estrategista · Mentora · Executiva</p><p class="font-sans text-lg text-silver/90 leading-relaxed">Sou uma profissional que transitou por múltiplas áreas do mundo corporativo e descobriu que o verdadeiro diferencial não está apenas em dominar ferramentas, processos ou estratégias — mas em integrar tudo isso com desenvolvimento humano profundo.</p></div></div></div></section><section class="py-24 bg-black"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div style="opacity: 1; transform: none;"><h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-8">Trajetória</h2><div class="space-y-6 text-lg text-silver/90 leading-relaxed font-sans"><p>Minha jornada profissional começou no mundo da tecnologia e da gestão de projetos, onde aprendi a estruturar processos complexos e liderar equipes em ambientes de alta pressão. Ao longo dos anos, assumi posições executivas que me colocaram à frente de mais de 500 profissionais, em iniciativas que envolviam transformação digital, governança corporativa e reestruturação operacional.</p><p>Foi durante essa trajetória que percebi um padrão: as empresas que realmente cresciam não eram apenas as que tinham as melhores estratégias ou tecnologias, mas aquelas cujos líderes tinham clareza interna, propósito definido e capacidade de manter coerência entre o que diziam e o que faziam.</p><p>Essa percepção me levou a aprofundar estudos em desenvolvimento humano, neurociência aplicada à liderança, reprogramação de crenças e alinhamento estratégico. Percebi que minha missão era unir esses dois mundos: o rigor da estratégia empresarial e a profundidade da transformação pessoal.</p><p>Hoje, atuo em duas frentes: mentoria individualizada para líderes e profissionais que buscam crescimento consciente, e consultoria estratégica para empresas através da Roque Business Evolution — onde aplico metodologias robustas de transformação digital, governança e gestão de operações.</p></div></div></div></section><section class="py-24 bg-gradient-to-b from-black to-black/95"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div style="opacity: 1; transform: none;"><h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-8">Filosofia</h2><blockquote class="border-l-4 border-gold pl-6 mb-8"><p class="font-serif text-2xl text-gold italic">"O crescimento externo é consequência do crescimento interno. Você não constrói um negócio sustentável sem primeiro construir uma liderança sustentável."</p></blockquote><div class="space-y-6 text-lg text-silver/90 leading-relaxed font-sans"><p>Acredito que toda transformação real começa com consciência. Não é possível liderar outras pessoas se você não lidera a si mesmo. Não é possível construir uma empresa sólida se sua mente está fragmentada. E não é possível gerar resultados sustentáveis se você está operando a partir de crenças limitantes ou padrões automáticos.</p><p>Meu trabalho é guiado por três pilares: <strong class="text-gold">Estratégia</strong> (clareza de direção), <strong class="text-gold">Consciência</strong> (autoconhecimento e reprogramação mental) e <strong class="text-gold">Execução</strong> (ação estruturada e consistente). Quando esses três elementos se alinham, o crescimento se torna inevitável.</p><p>Não trabalho com fórmulas mágicas ou promessas vazias. Trabalho com pessoas e empresas que estão dispostas a fazer o trabalho profundo — porque é esse trabalho que gera mudanças reais e duradouras.</p></div></div></div></section><section class="py-24 bg-black"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div style="opacity: 0; transform: translateY(1.38183px);"><h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-8">Diferencial</h2><div class="space-y-6 text-lg text-silver/90 leading-relaxed font-sans mb-12"><p>O que me diferencia é a combinação rara entre experiência executiva sólida e formação profunda em desenvolvimento humano. Não sou apenas uma estrategista que entende de negócios, nem apenas uma mentora que trabalha mindset. Sou alguém que viveu os dois mundos e sabe exatamente como integrá-los.</p><p>Já estruturei operações de grande porte, liderado times complexos, implementado sistemas de governança, conduzido transformações digitais end-to-end — e ao mesmo tempo, fiz meu próprio trabalho interno de reprogramação, clareza mental e alinhamento de propósito.</p><p>Por isso, quando trabalho com líderes ou empresas, trago uma visão que vai além do superficial. Sei onde estão os gargalos invisíveis, as crenças que sabotam o crescimento, os padrões que impedem a evolução. E sei exatamente como transformar isso em estratégia aplicável.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-6 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(4.2721px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award text-gold w-10 h-10 mb-4"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg><h3 class="font-serif text-xl font-semibold text-white mb-2">Excelência</h3><p class="font-sans text-silver/80">Compromisso com os mais altos padrões em tudo o que faço</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-6 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(7.75399px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart text-gold w-10 h-10 mb-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg><h3 class="font-serif text-xl font-semibold text-white mb-2">Consciência</h3><p class="font-sans text-silver/80">Desenvolvimento que integra mente, emoção e propósito</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-6 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(11.9445px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target text-gold w-10 h-10 mb-4"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg><h3 class="font-serif text-xl font-semibold text-white mb-2">Resultados</h3><p class="font-sans text-silver/80">Foco em transformações reais e mensuráveis</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-6 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(16.7366px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap text-gold w-10 h-10 mb-4"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg><h3 class="font-serif text-xl font-semibold text-white mb-2">Execução</h3><p class="font-sans text-silver/80">Estratégia que se materializa em ação concreta</p></div></div></div></div></section></div><a href="https://wa.me/5511973967161" target="_blank" rel="noopener noreferrer" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center justify-center w-14 h-14 bg-black/80 backdrop-blur-md border border-gold/30 rounded-full shadow-lg shadow-black/50 hover:shadow-gold/20 transition-all duration-300 group overflow-hidden" aria-label="Fale conosco no WhatsApp" style="opacity: 1; transform: none;"><div class="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div><div class="absolute inset-0 rounded-full border border-white/5 pointer-events-none"></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle w-7 h-7 text-[#25D366] relative z-10 drop-shadow-sm"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a><footer class="bg-black border-t border-gold/20 py-12"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8"><div><span class="font-serif text-2xl font-bold text-gold">Viviane Roque</span><p class="mt-4 text-silver/80 font-sans text-sm">Estratégia, Consciência e Execução para Pessoas e Empresas que Decidiram Crescer de Verdade.</p></div><div><h3 class="font-serif text-lg font-semibold text-white mb-4">Navegação</h3><ul class="space-y-2"><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/trabalhe-comigo">Mentoria Estratégica</a></li><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/para-empresas">Atuação Empresarial</a></li><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/conteudos">Conteúdos Autorais</a></li><li><span class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm cursor-pointer">Política de Privacidade</span></li><li><span class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm cursor-pointer">Termos de Uso</span></li></ul></div><div><h3 class="font-serif text-lg font-semibold text-white mb-4">Vamos Conversar?</h3><button class="w-full bg-gold hover:bg-gold/90 text-black font-sans font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/50">Falar com Viviane</button></div></div><div class="border-t border-gold/20 pt-8 text-center"><p class="text-silver/60 font-sans text-sm">© 2026 Viviane Roque. Todos os direitos reservados.</p></div></div></footer><div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;"><ol tabindex="-1" class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]"></ol></div></div></div>
+		
+	
+</body></html>

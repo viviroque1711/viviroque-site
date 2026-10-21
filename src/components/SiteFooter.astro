@@ -1,0 +1,44 @@
+---
+import { NAV, LEGAL, EXTERNAL, WHATSAPP } from '../data/nav.mjs';
+import { SITE } from '../data/site.mjs';
+import { u } from '../lib/url.mjs';
+const { updated } = Astro.props;
+const fmt = updated ? updated.split('-').reverse().join('/') : '';
+---
+<footer class="ft">
+  <div class="ft-in">
+    <div class="ft-id">
+      <p class="ft-name">Viviane Roque</p>
+      <p class="ft-line">Especialista em transformação digital, fundadora do Aurora Premium e da Roque Business Evolution.</p>
+      <p class="ft-company">
+        <img src={u('/img/roque-simbolo.png')} width="44" height="43" alt="" loading="lazy">
+        <span><a href={EXTERNAL.rbe.href}>Roque Business Evolution</a><br><small>Roque Business Evolution Serviços Ltda.</small></span>
+      </p>
+    </div>
+    <nav class="ft-col" aria-label="Páginas do site">
+      <p class="ft-h">Site</p>
+      <ul>
+        <li><a href={u('/')}>Início</a></li>
+        {NAV.map((n) => <li><a href={u(n.href)}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+    <nav class="ft-col" aria-label="O que eu construo">
+      <p class="ft-h">O que eu construo</p>
+      <ul>
+        <li><a href={EXTERNAL.rbe.href}>Roque Business Evolution</a></li>
+        <li><a href={EXTERNAL.aurora.href}>Aurora Premium</a></li>
+        <li><a href={EXTERNAL.engagebot.href}>EngageBot</a></li>
+      </ul>
+    </nav>
+    <nav class="ft-col" aria-label="Contato e redes">
+      <p class="ft-h">Contato</p>
+      <ul>
+        <li><a href={WHATSAPP.href} rel="noopener">WhatsApp {WHATSAPP.label}</a></li>
+        <li><a href={SITE.linkedin} rel="noopener me">LinkedIn</a></li>
+        <li><a href={SITE.instagram} rel="noopener me">Instagram</a></li>
+        {LEGAL.map((n) => <li><a href={u(n.href)}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+  <p class="ft-copy">© 2026 Viviane Roque. Todos os direitos reservados.{fmt && <> Atualizado em {fmt}.</>}</p>
+</footer>

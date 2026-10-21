@@ -1,0 +1,81 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://viviroque.com.br/#website",
+   "url": "https://viviroque.com.br/",
+   "name": "Viviane Roque",
+   "inLanguage": "pt-BR",
+   "publisher": {
+    "@id": "https://viviroque.com.br/#viviane-roque"
+   }
+  },
+  {
+   "@type": "ProfilePage",
+   "@id": "https://viviroque.com.br/#profile",
+   "url": "https://viviroque.com.br/",
+   "name": "Viviane Roque",
+   "inLanguage": "pt-BR",
+   "isPartOf": {
+    "@id": "https://viviroque.com.br/#website"
+   },
+   "mainEntity": {
+    "@id": "https://viviroque.com.br/#viviane-roque"
+   },
+   "dateModified": "2026-10-21"
+  },
+  {
+   "@type": "Person",
+   "@id": "https://viviroque.com.br/#viviane-roque",
+   "name": "Viviane Roque",
+   "url": "https://viviroque.com.br/",
+   "image": "https://viviroque.com.br/img/viviane-roque-retrato.png",
+   "jobTitle": "Fundadora",
+   "description": "Especialista em transformação digital, gestão de operações e inteligência artificial. Fundadora da Roque Business Evolution e do Aurora Premium.",
+   "sameAs": [
+    "https://www.linkedin.com/in/vivianepereirambas/",
+    "https://www.instagram.com/viviroqueoficial/"
+   ],
+   "worksFor": {
+    "@id": "https://roquebusinessevolution.com/#org"
+   },
+   "hasCredential": [
+    {
+     "@type": "EducationalOccupationalCredential",
+     "name": "PMP",
+     "credentialCategory": "certification"
+    },
+    {
+     "@type": "EducationalOccupationalCredential",
+     "name": "SAFe Agilist",
+     "credentialCategory": "certification"
+    },
+    {
+     "@type": "EducationalOccupationalCredential",
+     "name": "PSM",
+     "credentialCategory": "certification"
+    },
+    {
+     "@type": "EducationalOccupationalCredential",
+     "name": "Six Sigma Master Black Belt",
+     "credentialCategory": "certification"
+    }
+   ],
+   "alumniOf": [
+    {
+     "@type": "EducationalOrganization",
+     "name": "Columbia University"
+    },
+    {
+     "@type": "EducationalOrganization",
+     "name": "Massachusetts Institute of Technology (MIT)"
+    },
+    {
+     "@type": "EducationalOrganization",
+     "name": "FIA Business School"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,165 @@
+<html lang="en"><head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/svg+xml" href="/vite.svg">
+		<meta name="generator" content="Hostinger Horizons">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Para Empresas - Roque Business Evolution - Viviane Roque</title>
+		<script type="module" crossorigin="" src="/assets/index-dbea1b3e.js"></script>
+		<link rel="stylesheet" href="/assets/index-33000648.css">
+		<script type="module">
+window.onerror = (message, source, lineno, colno, errorObj) => {
+	const errorDetails = errorObj ? JSON.stringify({
+		name: errorObj.name,
+		message: errorObj.message,
+		stack: errorObj.stack,
+		source,
+		lineno,
+		colno,
+	}) : null;
+
+	window.parent.postMessage({
+		type: 'horizons-runtime-error',
+		message,
+		error: errorDetails
+	}, '*');
+};
+</script>
+		<script type="module">
+const observer = new MutationObserver((mutations) => {
+	for (const mutation of mutations) {
+		for (const addedNode of mutation.addedNodes) {
+			if (
+				addedNode.nodeType === Node.ELEMENT_NODE &&
+				(
+					addedNode.tagName?.toLowerCase() === 'vite-error-overlay' ||
+					addedNode.classList?.contains('backdrop')
+				)
+			) {
+				handleViteOverlay(addedNode);
+			}
+		}
+	}
+});
+
+observer.observe(document.documentElement, {
+	childList: true,
+	subtree: true
+});
+
+function handleViteOverlay(node) {
+	if (!node.shadowRoot) {
+		return;
+	}
+
+	const backdrop = node.shadowRoot.querySelector('.backdrop');
+
+	if (backdrop) {
+		const overlayHtml = backdrop.outerHTML;
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(overlayHtml, 'text/html');
+		const messageBodyElement = doc.querySelector('.message-body');
+		const fileElement = doc.querySelector('.file');
+		const messageText = messageBodyElement ? messageBodyElement.textContent.trim() : '';
+		const fileText = fileElement ? fileElement.textContent.trim() : '';
+		const error = messageText + (fileText ? ' File:' + fileText : '');
+
+		window.parent.postMessage({
+			type: 'horizons-vite-error',
+			error,
+		}, '*');
+	}
+}
+</script>
+		<script type="module">
+const originalConsoleError = console.error;
+console.error = function(...args) {
+	originalConsoleError.apply(console, args);
+
+	let errorString = '';
+
+	for (let i = 0; i < args.length; i++) {
+		const arg = args[i];
+		if (arg instanceof Error) {
+			errorString = arg.stack || `${arg.name}: ${arg.message}`;
+			break;
+		}
+	}
+
+	if (!errorString) {
+		errorString = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : String(arg)).join(' ');
+	}
+
+	window.parent.postMessage({
+		type: 'horizons-console-error',
+		error: errorString
+	}, '*');
+};
+</script>
+		<script type="module">
+const originalFetch = window.fetch;
+
+window.fetch = function(...args) {
+	const url = args[0] instanceof Request ? args[0].url : args[0];
+
+	// Skip WebSocket URLs
+	if (url.startsWith('ws:') || url.startsWith('wss:')) {
+		return originalFetch.apply(this, args);
+	}
+
+	return originalFetch.apply(this, args)
+		.then(async response => {
+			const contentType = response.headers.get('Content-Type') || '';
+
+			// Exclude HTML document responses
+			const isDocumentResponse =
+				contentType.includes('text/html') ||
+				contentType.includes('application/xhtml+xml');
+
+			if (!response.ok && !isDocumentResponse) {
+					const responseClone = response.clone();
+					const errorFromRes = await responseClone.text();
+					const requestUrl = response.url;
+					console.error(`Fetch error from ${requestUrl}: ${errorFromRes}`);
+			}
+
+			return response;
+		})
+		.catch(error => {
+			if (!url.match(/.html?$/i)) {
+				console.error(error);
+			}
+
+			throw error;
+		});
+};
+</script>
+		<script type="module">
+if (window.navigation && window.self !== window.top) {
+	window.navigation.addEventListener('navigate', (event) => {
+		const url = event.destination.url;
+
+		try {
+			const destinationUrl = new URL(url);
+			const destinationOrigin = destinationUrl.origin;
+			const currentOrigin = window.location.origin;
+
+			if (destinationOrigin === currentOrigin) {
+				return;
+			}
+		} catch (error) {
+			return;
+		}
+
+		window.parent.postMessage({
+			type: 'horizons-navigation-error',
+			url,
+		}, '*');
+	});
+}
+</script>
+	<meta name="description" content="Transformação digital, governança e crescimento sustentável para empresas através da Roque Business Evolution." data-react-helmet="true"></head>
+	<body>
+		<div id="root"><div class="min-h-screen bg-black text-white"><nav class="fixed top-0 w-full bg-black/95 backdrop-blur-md z-50 border-b border-gold/10"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-20"><a class="flex items-center" href="/"><span class="font-serif text-2xl font-bold text-gold">Viviane Roque</span></a><div class="hidden lg:flex items-center space-x-8"><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/">Home</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/quem-sou">Quem Sou</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/minha-atuacao">Minha Atuação</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/trabalhe-comigo">Trabalhe Comigo</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-gold" href="/para-empresas">Para Empresas</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/conteudos">Conteúdos</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/contato">Contato</a></div><button class="lg:hidden text-white hover:text-gold transition-colors duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div></nav><div class="pt-20 bg-black"><section class="relative py-24 overflow-hidden"><div class="absolute inset-0 bg-cover bg-center" style="background-image: url(&quot;https://images.unsplash.com/photo-1685955011452-2d9cf1cb4081&quot;); filter: brightness(0.3);"></div><div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black"></div><div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building2 text-gold w-16 h-16 mx-auto mb-6"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path><path d="M10 6h4"></path><path d="M10 10h4"></path><path d="M10 14h4"></path><path d="M10 18h4"></path></svg><h1 class="font-serif text-4xl sm:text-5xl font-bold text-white mb-6">Estratégia para empresas</h1><p class="font-sans text-xl text-silver/90 mb-8 leading-relaxed">Estratégia para empresas que precisam de direção clara, governança estruturada e transformação digital orientada a dados.</p><blockquote class="border-l-4 border-gold pl-6"><p class="font-serif text-2xl text-gold italic">"Empresas não crescem por acaso. Crescem por estratégia, governança e execução disciplinada"</p></blockquote></div></div></section><section class="py-24 bg-black"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16" style="opacity: 1; transform: none;"><h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-6">O Que Nos Diferencia</h2><p class="font-sans text-lg text-silver/90 max-w-3xl mx-auto">Não somos uma consultoria tradicional que entrega apresentações e vai embora. Somos parceiros estratégicos que implementam, acompanham e garantem resultados.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-8 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target text-gold w-10 h-10 mb-4"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg><h3 class="font-serif text-xl font-semibold text-white mb-3">Visão Estratégica Integrada</h3><p class="font-sans text-silver/80">Não trabalhamos áreas isoladas. Integramos tecnologia, processos, pessoas e governança em uma estratégia coesa</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-8 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap text-gold w-10 h-10 mb-4"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg><h3 class="font-serif text-xl font-semibold text-white mb-3">Execução Hands-On</h3><p class="font-sans text-silver/80">Não entregamos apenas relatórios. Implementamos, acompanhamos e garantimos resultados</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-8 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users text-gold w-10 h-10 mb-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><h3 class="font-serif text-xl font-semibold text-white mb-3">Capacitação de Times</h3><p class="font-sans text-silver/80">Desenvolvemos as pessoas da sua empresa para que as mudanças sejam sustentáveis</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-8 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(0.0098493px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up text-gold w-10 h-10 mb-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><h3 class="font-serif text-xl font-semibold text-white mb-3">Orientação a Resultados</h3><p class="font-sans text-silver/80">Cada ação é medida por KPIs claros e impacto real no negócio</p></div></div></div></section><section class="py-24 bg-gradient-to-b from-black to-black/95"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16" style="opacity: 1; transform: none;"><h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">Nossos Serviços</h2></div><div class="space-y-8"><div class="bg-gradient-to-r from-black to-black/80 border-l-4 border-gold p-8 rounded-xl" style="opacity: 1; transform: none;"><div class="flex items-start mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu text-gold w-12 h-12 mr-6 flex-shrink-0"><rect width="16" height="16" x="4" y="4" rx="2"></rect><rect width="6" height="6" x="9" y="9" rx="1"></rect><path d="M15 2v2"></path><path d="M15 20v2"></path><path d="M2 15h2"></path><path d="M2 9h2"></path><path d="M20 15h2"></path><path d="M20 9h2"></path><path d="M9 2v2"></path><path d="M9 20v2"></path></svg><div><h3 class="font-serif text-2xl font-bold text-white mb-3">Transformação Digital End-to-End</h3><p class="font-sans text-lg text-silver/90 leading-relaxed">Da estratégia à implementação: digitalização de processos, adoção de tecnologias, automação e integração de sistemas</p></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-3 ml-0 md:ml-18"><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Mapeamento e redesenho de processos</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Seleção e implementação de tecnologias</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Automação de operações</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Gestão da mudança organizacional</span></div></div></div><div class="bg-gradient-to-r from-black to-black/80 border-l-4 border-gold p-8 rounded-xl" style="opacity: 1; transform: none;"><div class="flex items-start mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield text-gold w-12 h-12 mr-6 flex-shrink-0"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg><div><h3 class="font-serif text-2xl font-bold text-white mb-3">Governança / PMO / Gestão de Portfólio</h3><p class="font-sans text-lg text-silver/90 leading-relaxed">Estruturação de governança corporativa, escritório de projetos e gestão estratégica de iniciativas</p></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-3 ml-0 md:ml-18"><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Implementação de PMO</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Gestão de portfólio de projetos</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Frameworks de governança</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Controles e relatórios executivos</span></div></div></div><div class="bg-gradient-to-r from-black to-black/80 border-l-4 border-gold p-8 rounded-xl" style="opacity: 0; transform: translateY(3.80713px);"><div class="flex items-start mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target text-gold w-12 h-12 mr-6 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg><div><h3 class="font-serif text-2xl font-bold text-white mb-3">Operações Inteligentes e Automação</h3><p class="font-sans text-lg text-silver/90 leading-relaxed">Otimização de processos operacionais com tecnologia, automação e inteligência de dados</p></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-3 ml-0 md:ml-18"><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Análise e otimização de processos</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Automação de workflows</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Integração de sistemas</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Dashboards e analytics</span></div></div></div><div class="bg-gradient-to-r from-black to-black/80 border-l-4 border-gold p-8 rounded-xl" style="opacity: 0; transform: translateY(8.30688px);"><div class="flex items-start mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up text-gold w-12 h-12 mr-6 flex-shrink-0"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><div><h3 class="font-serif text-2xl font-bold text-white mb-3">Marketing Estratégico Orientado a Dados</h3><p class="font-sans text-lg text-silver/90 leading-relaxed">Estratégias de marketing baseadas em análise de dados, performance e geração de resultados mensuráveis</p></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-3 ml-0 md:ml-18"><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Planejamento estratégico de marketing</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Analytics e attribution modeling</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Otimização de conversão</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Marketing automation</span></div></div></div><div class="bg-gradient-to-r from-black to-black/80 border-l-4 border-gold p-8 rounded-xl" style="opacity: 0; transform: translateY(13.979px);"><div class="flex items-start mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users text-gold w-12 h-12 mr-6 flex-shrink-0"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><div><h3 class="font-serif text-2xl font-bold text-white mb-3">Outsourcing Especializado</h3><p class="font-sans text-lg text-silver/90 leading-relaxed">Times completos ou profissionais especializados para projetos estratégicos e operacionais</p></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-3 ml-0 md:ml-18"><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Squads especializados</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Profissionais seniores sob demanda</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Gestão de fornecedores</span></div><div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-5 h-5 mr-3 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/80">Redução de custos operacionais</span></div></div></div></div></div></section><section class="py-24 bg-black"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div style="opacity: 0; transform: translateY(1.59703px);"><h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-8">Para Quem É</h2><p class="font-sans text-lg text-silver/90 mb-8 leading-relaxed">Trabalhamos com empresas que entendem que crescimento sustentável requer estrutura, governança e transformação real — não apenas ações pontuais.</p><div class="space-y-4"><div class="flex items-start bg-gradient-to-r from-black to-black/80 border border-gold/20 p-4 rounded-lg" style="opacity: 0; transform: translateX(-1.06469px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-6 h-6 mr-4 mt-1 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/90">Empresas em crescimento que precisam estruturar governança e processos</span></div><div class="flex items-start bg-gradient-to-r from-black to-black/80 border border-gold/20 p-4 rounded-lg" style="opacity: 0; transform: translateX(-7.95481px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-6 h-6 mr-4 mt-1 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/90">Organizações que desejam transformação digital real, não apenas discurso</span></div><div class="flex items-start bg-gradient-to-r from-black to-black/80 border border-gold/20 p-4 rounded-lg" style="opacity: 0; transform: translateX(-12.16px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-6 h-6 mr-4 mt-1 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/90">Negócios que enfrentam gargalos operacionais e precisam de eficiência</span></div><div class="flex items-start bg-gradient-to-r from-black to-black/80 border border-gold/20 p-4 rounded-lg" style="opacity: 0; transform: translateX(-16.9896px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-6 h-6 mr-4 mt-1 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/90">Empresas que buscam inteligência de dados e marketing orientado a performance</span></div><div class="flex items-start bg-gradient-to-r from-black to-black/80 border border-gold/20 p-4 rounded-lg" style="opacity: 0; transform: translateX(-20px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check text-gold w-6 h-6 mr-4 mt-1 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg><span class="font-sans text-silver/90">Organizações que precisam de capacitação de lideranças e times</span></div></div></div></div></section><section class="py-24 bg-gradient-to-b from-black to-black/95"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div style="opacity: 0; transform: translateY(6.63006px);"><h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-6">Vamos Conversar Sobre Seu Negócio</h2><p class="font-sans text-lg text-silver/90 mb-12 leading-relaxed">Se sua empresa precisa de direção estratégica, governança ou transformação digital, vamos agendar uma conversa para entender seus desafios e objetivos.</p><button class="bg-gold hover:bg-gold/90 text-black font-sans font-semibold px-10 py-5 rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/50 hover:scale-105 text-lg">Conhecer a Roque Business Evolution</button></div></div></section></div><a href="https://wa.me/5511973967161" target="_blank" rel="noopener noreferrer" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center justify-center w-14 h-14 bg-black/80 backdrop-blur-md border border-gold/30 rounded-full shadow-lg shadow-black/50 hover:shadow-gold/20 transition-all duration-300 group overflow-hidden" aria-label="Fale conosco no WhatsApp" style="opacity: 1; transform: none;"><div class="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div><div class="absolute inset-0 rounded-full border border-white/5 pointer-events-none"></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle w-7 h-7 text-[#25D366] relative z-10 drop-shadow-sm"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a><footer class="bg-black border-t border-gold/20 py-12"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8"><div><span class="font-serif text-2xl font-bold text-gold">Viviane Roque</span><p class="mt-4 text-silver/80 font-sans text-sm">Estratégia, Consciência e Execução para Pessoas e Empresas que Decidiram Crescer de Verdade.</p></div><div><h3 class="font-serif text-lg font-semibold text-white mb-4">Navegação</h3><ul class="space-y-2"><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/trabalhe-comigo">Mentoria Estratégica</a></li><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/para-empresas">Atuação Empresarial</a></li><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/conteudos">Conteúdos Autorais</a></li><li><span class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm cursor-pointer">Política de Privacidade</span></li><li><span class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm cursor-pointer">Termos de Uso</span></li></ul></div><div><h3 class="font-serif text-lg font-semibold text-white mb-4">Vamos Conversar?</h3><button class="w-full bg-gold hover:bg-gold/90 text-black font-sans font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/50">Falar com Viviane</button></div></div><div class="border-t border-gold/20 pt-8 text-center"><p class="text-silver/60 font-sans text-sm">© 2026 Viviane Roque. Todos os direitos reservados.</p></div></div></footer><div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;"><ol tabindex="-1" class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]"></ol></div></div></div>
+		
+	
+</body></html>

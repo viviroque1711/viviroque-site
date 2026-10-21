@@ -1,0 +1,165 @@
+<html lang="en"><head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/svg+xml" href="/vite.svg">
+		<meta name="generator" content="Hostinger Horizons">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Minha Atuação - Viviane Roque</title>
+		<script type="module" crossorigin="" src="/assets/index-dbea1b3e.js"></script>
+		<link rel="stylesheet" href="/assets/index-33000648.css">
+		<script type="module">
+window.onerror = (message, source, lineno, colno, errorObj) => {
+	const errorDetails = errorObj ? JSON.stringify({
+		name: errorObj.name,
+		message: errorObj.message,
+		stack: errorObj.stack,
+		source,
+		lineno,
+		colno,
+	}) : null;
+
+	window.parent.postMessage({
+		type: 'horizons-runtime-error',
+		message,
+		error: errorDetails
+	}, '*');
+};
+</script>
+		<script type="module">
+const observer = new MutationObserver((mutations) => {
+	for (const mutation of mutations) {
+		for (const addedNode of mutation.addedNodes) {
+			if (
+				addedNode.nodeType === Node.ELEMENT_NODE &&
+				(
+					addedNode.tagName?.toLowerCase() === 'vite-error-overlay' ||
+					addedNode.classList?.contains('backdrop')
+				)
+			) {
+				handleViteOverlay(addedNode);
+			}
+		}
+	}
+});
+
+observer.observe(document.documentElement, {
+	childList: true,
+	subtree: true
+});
+
+function handleViteOverlay(node) {
+	if (!node.shadowRoot) {
+		return;
+	}
+
+	const backdrop = node.shadowRoot.querySelector('.backdrop');
+
+	if (backdrop) {
+		const overlayHtml = backdrop.outerHTML;
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(overlayHtml, 'text/html');
+		const messageBodyElement = doc.querySelector('.message-body');
+		const fileElement = doc.querySelector('.file');
+		const messageText = messageBodyElement ? messageBodyElement.textContent.trim() : '';
+		const fileText = fileElement ? fileElement.textContent.trim() : '';
+		const error = messageText + (fileText ? ' File:' + fileText : '');
+
+		window.parent.postMessage({
+			type: 'horizons-vite-error',
+			error,
+		}, '*');
+	}
+}
+</script>
+		<script type="module">
+const originalConsoleError = console.error;
+console.error = function(...args) {
+	originalConsoleError.apply(console, args);
+
+	let errorString = '';
+
+	for (let i = 0; i < args.length; i++) {
+		const arg = args[i];
+		if (arg instanceof Error) {
+			errorString = arg.stack || `${arg.name}: ${arg.message}`;
+			break;
+		}
+	}
+
+	if (!errorString) {
+		errorString = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : String(arg)).join(' ');
+	}
+
+	window.parent.postMessage({
+		type: 'horizons-console-error',
+		error: errorString
+	}, '*');
+};
+</script>
+		<script type="module">
+const originalFetch = window.fetch;
+
+window.fetch = function(...args) {
+	const url = args[0] instanceof Request ? args[0].url : args[0];
+
+	// Skip WebSocket URLs
+	if (url.startsWith('ws:') || url.startsWith('wss:')) {
+		return originalFetch.apply(this, args);
+	}
+
+	return originalFetch.apply(this, args)
+		.then(async response => {
+			const contentType = response.headers.get('Content-Type') || '';
+
+			// Exclude HTML document responses
+			const isDocumentResponse =
+				contentType.includes('text/html') ||
+				contentType.includes('application/xhtml+xml');
+
+			if (!response.ok && !isDocumentResponse) {
+					const responseClone = response.clone();
+					const errorFromRes = await responseClone.text();
+					const requestUrl = response.url;
+					console.error(`Fetch error from ${requestUrl}: ${errorFromRes}`);
+			}
+
+			return response;
+		})
+		.catch(error => {
+			if (!url.match(/.html?$/i)) {
+				console.error(error);
+			}
+
+			throw error;
+		});
+};
+</script>
+		<script type="module">
+if (window.navigation && window.self !== window.top) {
+	window.navigation.addEventListener('navigate', (event) => {
+		const url = event.destination.url;
+
+		try {
+			const destinationUrl = new URL(url);
+			const destinationOrigin = destinationUrl.origin;
+			const currentOrigin = window.location.origin;
+
+			if (destinationOrigin === currentOrigin) {
+				return;
+			}
+		} catch (error) {
+			return;
+		}
+
+		window.parent.postMessage({
+			type: 'horizons-navigation-error',
+			url,
+		}, '*');
+	});
+}
+</script>
+	<meta name="description" content="Conheça a atuação de Viviane Roque com pessoas e empresas - Mentoria estratégica e Roque Business Evolution." data-react-helmet="true"></head>
+	<body>
+		<div id="root"><div class="min-h-screen bg-black text-white"><nav class="fixed top-0 w-full bg-black/95 backdrop-blur-md z-50 border-b border-gold/10"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-20"><a class="flex items-center" href="/"><span class="font-serif text-2xl font-bold text-gold">Viviane Roque</span></a><div class="hidden lg:flex items-center space-x-8"><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/">Home</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/quem-sou">Quem Sou</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-gold" href="/minha-atuacao">Minha Atuação</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/trabalhe-comigo">Trabalhe Comigo</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/para-empresas">Para Empresas</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/conteudos">Conteúdos</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/contato">Contato</a></div><button class="lg:hidden text-white hover:text-gold transition-colors duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div></nav><div class="pt-20 bg-black"><section class="py-24 bg-gradient-to-b from-black to-black/95"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><div style="opacity: 1; transform: none;"><h1 class="font-serif text-4xl sm:text-5xl font-bold text-white mb-6">Minha Atuação</h1><p class="font-sans text-xl text-silver/90 leading-relaxed">Trabalho em duas frentes distintas e complementares: desenvolvimento de pessoas e transformação de empresas.</p></div></div></section><section class="py-24 bg-black"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16" style="opacity: 1; transform: none;"><h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-6">Atuação com Pessoas</h2><p class="font-sans text-lg text-silver/90 max-w-3xl mx-auto leading-relaxed">Acompanho líderes, executivos e profissionais em um processo profundo de transformação pessoal e profissional. O foco está em desenvolver consciência, clareza estratégica e execução alinhada com propósito.</p></div><div class="mb-16"><h3 class="font-serif text-2xl font-bold text-white mb-8 text-center">Metodologia</h3><div class="max-w-3xl mx-auto space-y-6 text-lg text-silver/90 leading-relaxed font-sans"><p>Meu processo de mentoria não é coaching tradicional. É um acompanhamento estratégico que combina:</p><ul class="space-y-3 ml-6"><li class="flex items-start"><span class="text-gold mr-3 mt-1">•</span><span><strong class="text-white">Diagnóstico profundo:</strong> Identificação de crenças limitantes, padrões de autossabotagem e gargalos mentais</span></li><li class="flex items-start"><span class="text-gold mr-3 mt-1">•</span><span><strong class="text-white">Reprogramação:</strong> Técnicas de ressignificação, ancoragem de novos comportamentos e instalação de crenças potencializadoras</span></li><li class="flex items-start"><span class="text-gold mr-3 mt-1">•</span><span><strong class="text-white">Estratégia aplicada:</strong> Planos de ação concretos, definição de metas e estruturação de processos</span></li><li class="flex items-start"><span class="text-gold mr-3 mt-1">•</span><span><strong class="text-white">Acompanhamento contínuo:</strong> Sessões regulares, ajustes de rota e accountability estruturado</span></li></ul></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-8 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain text-gold w-10 h-10 mb-4"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path><path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path><path d="M19.938 10.5a4 4 0 0 1 .585.396"></path><path d="M6 18a4 4 0 0 1-1.967-.516"></path><path d="M19.967 17.484A4 4 0 0 1 18 18"></path></svg><h3 class="font-serif text-xl font-semibold text-white mb-3">Clareza Mental</h3><p class="font-sans text-silver/80">Elimine ruídos mentais e tome decisões com confiança</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-8 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(0.387526px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target text-gold w-10 h-10 mb-4"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg><h3 class="font-serif text-xl font-semibold text-white mb-3">Direção Estratégica</h3><p class="font-sans text-silver/80">Defina metas claras e caminhos tangíveis para alcançá-las</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-8 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(2.86973px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb text-gold w-10 h-10 mb-4"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg><h3 class="font-serif text-xl font-semibold text-white mb-3">Reprogramação de Crenças</h3><p class="font-sans text-silver/80">Identifique e transforme padrões que limitam seu crescimento</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-8 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(7.00526px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up text-gold w-10 h-10 mb-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><h3 class="font-serif text-xl font-semibold text-white mb-3">Prosperidade Sustentável</h3><p class="font-sans text-silver/80">Alinhe vida pessoal, carreira e abundância financeira</p></div></div><div class="text-center" style="opacity: 0; transform: translateY(0.985349px);"><button class="bg-gold hover:bg-gold/90 text-black font-sans font-semibold px-8 py-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/50 hover:scale-105">Iniciar minha jornada de expansão</button></div></div></section><section class="py-24 bg-gradient-to-b from-black to-black/95"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16" style="opacity: 0; transform: translateY(0.985349px);"><h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-6">Atuação com Empresas</h2><p class="font-sans text-lg text-gold mb-4">Roque Business Evolution</p><p class="font-sans text-lg text-silver/90 max-w-3xl mx-auto leading-relaxed">Consultoria estratégica para empresas que precisam de governança, transformação digital, operações estruturadas e crescimento sustentável. Atuação prática, orientada a resultados e baseada em metodologias comprovadas.</p></div><div class="mb-16"><h3 class="font-serif text-2xl font-bold text-white mb-8 text-center">Abordagem</h3><div class="max-w-3xl mx-auto space-y-6 text-lg text-silver/90 leading-relaxed font-sans"><p>A Roque Business Evolution não é uma consultoria convencional. É uma parceria estratégica que envolve:</p><ul class="space-y-3 ml-6"><li class="flex items-start"><span class="text-gold mr-3 mt-1">•</span><span><strong class="text-white">Diagnóstico organizacional:</strong> Mapeamento completo de processos, sistemas, pessoas e governança</span></li><li class="flex items-start"><span class="text-gold mr-3 mt-1">•</span><span><strong class="text-white">Planejamento estratégico:</strong> Definição de objetivos, KPIs e roadmap de implementação</span></li><li class="flex items-start"><span class="text-gold mr-3 mt-1">•</span><span><strong class="text-white">Execução hands-on:</strong> Implementação prática com acompanhamento executivo direto</span></li><li class="flex items-start"><span class="text-gold mr-3 mt-1">•</span><span><strong class="text-white">Capacitação de times:</strong> Formação e desenvolvimento das equipes internas</span></li></ul></div></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-6 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(5.58123px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu text-gold w-10 h-10 mb-4"><rect width="16" height="16" x="4" y="4" rx="2"></rect><rect width="6" height="6" x="9" y="9" rx="1"></rect><path d="M15 2v2"></path><path d="M15 20v2"></path><path d="M2 15h2"></path><path d="M2 9h2"></path><path d="M20 15h2"></path><path d="M20 9h2"></path><path d="M9 2v2"></path><path d="M9 20v2"></path></svg><h3 class="font-serif text-lg font-semibold text-white mb-3">Transformação Digital End-to-End</h3><p class="font-sans text-sm text-silver/80">Digitalização completa de processos, sistemas e modelos de negócio</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-6 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(10.6085px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield text-gold w-10 h-10 mb-4"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg><h3 class="font-serif text-lg font-semibold text-white mb-3">Governança/PMO/Gestão de Portfólio</h3><p class="font-sans text-sm text-silver/80">Estruturas de governança, gestão de projetos e controle estratégico</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-6 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(16.6996px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target text-gold w-10 h-10 mb-4"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg><h3 class="font-serif text-lg font-semibold text-white mb-3">Operações Inteligentes e Automação</h3><p class="font-sans text-sm text-silver/80">Otimização de processos operacionais com tecnologia e automação</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-6 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(30px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up text-gold w-10 h-10 mb-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><h3 class="font-serif text-lg font-semibold text-white mb-3">Marketing Estratégico Orientado a Dados</h3><p class="font-sans text-sm text-silver/80">Estratégias de marketing baseadas em análise de dados e resultados</p></div><div class="bg-gradient-to-br from-black to-black/80 border border-gold/20 p-6 rounded-xl hover:shadow-lg hover:shadow-gold/20 transition-all duration-300" style="opacity: 0; transform: translateY(30px);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users text-gold w-10 h-10 mb-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><h3 class="font-serif text-lg font-semibold text-white mb-3">Outsourcing Especializado</h3><p class="font-sans text-sm text-silver/80">Times especializados para projetos estratégicos e operacionais</p></div></div><div class="text-center" style="opacity: 0; transform: translateY(12.6249px);"><button class="bg-transparent border-2 border-gold hover:bg-gold hover:text-black text-gold font-sans font-semibold px-8 py-4 rounded-lg transition-all duration-300">Conhecer a Roque Business Evolution</button></div></div></section></div><a href="https://wa.me/5511973967161" target="_blank" rel="noopener noreferrer" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center justify-center w-14 h-14 bg-black/80 backdrop-blur-md border border-gold/30 rounded-full shadow-lg shadow-black/50 hover:shadow-gold/20 transition-all duration-300 group overflow-hidden" aria-label="Fale conosco no WhatsApp" style="opacity: 1; transform: none;"><div class="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div><div class="absolute inset-0 rounded-full border border-white/5 pointer-events-none"></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle w-7 h-7 text-[#25D366] relative z-10 drop-shadow-sm"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a><footer class="bg-black border-t border-gold/20 py-12"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8"><div><span class="font-serif text-2xl font-bold text-gold">Viviane Roque</span><p class="mt-4 text-silver/80 font-sans text-sm">Estratégia, Consciência e Execução para Pessoas e Empresas que Decidiram Crescer de Verdade.</p></div><div><h3 class="font-serif text-lg font-semibold text-white mb-4">Navegação</h3><ul class="space-y-2"><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/trabalhe-comigo">Mentoria Estratégica</a></li><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/para-empresas">Atuação Empresarial</a></li><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/conteudos">Conteúdos Autorais</a></li><li><span class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm cursor-pointer">Política de Privacidade</span></li><li><span class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm cursor-pointer">Termos de Uso</span></li></ul></div><div><h3 class="font-serif text-lg font-semibold text-white mb-4">Vamos Conversar?</h3><button class="w-full bg-gold hover:bg-gold/90 text-black font-sans font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/50">Falar com Viviane</button></div></div><div class="border-t border-gold/20 pt-8 text-center"><p class="text-silver/60 font-sans text-sm">© 2026 Viviane Roque. Todos os direitos reservados.</p></div></div></footer><div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;"><ol tabindex="-1" class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]"></ol></div></div></div>
+		
+	
+</body></html>

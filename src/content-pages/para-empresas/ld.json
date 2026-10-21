@@ -1,0 +1,35 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://viviroque.com.br/para-empresas/#page",
+   "url": "https://viviroque.com.br/para-empresas/",
+   "name": "Viviane Roque para empresas",
+   "inLanguage": "pt-BR",
+   "isPartOf": {
+    "@id": "https://viviroque.com.br/#website"
+   },
+   "about": {
+    "@id": "https://viviroque.com.br/#viviane-roque"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Início",
+     "item": "https://viviroque.com.br/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Para empresas",
+     "item": "https://viviroque.com.br/para-empresas/"
+    }
+   ]
+  }
+ ]
+}

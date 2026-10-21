@@ -1,0 +1,9 @@
+/
+/contato/
+/conteudos/
+/minha-atuacao/
+/para-empresas/
+/politica-de-privacidade/
+/quem-sou/
+/termos-de-uso/
+/trabalhe-comigo/

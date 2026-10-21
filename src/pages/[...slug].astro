@@ -1,0 +1,52 @@
+---
+// Rota única das páginas (src/content-pages/<slug>/): todas com a mesma moldura (cabeçalho, rodapé e WhatsApp flutuante).
+// O conteúdo (head, body, JSON-LD, CSS e script da página) é HTML pronto: o texto principal já está no HTML inicial (SSG).
+import '@fontsource/literata/latin-400.css';
+import '@fontsource/literata/latin-400-italic.css';
+import '@fontsource/literata/latin-600.css';
+import '@fontsource/schibsted-grotesk/latin-500.css';
+import '@fontsource/schibsted-grotesk/latin-600.css';
+import '../styles/site.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { contentPages, pageDirs, pageParts } from '../lib/pages.mjs';
+import { SITE } from '../data/site.mjs';
+
+export function getStaticPaths() {
+  return pageDirs().map((dir) => ({ params: { slug: dir === '_home' ? undefined : dir.replace(/__/g, '/') }, props: { dir } }));
+}
+
+const { dir } = Astro.props;
+const { head: rawHead, css, ld, body: rawBody, js } = pageParts(dir);
+const updated = contentPages().find((p) => p.dir === dir).lastmod;
+
+let head = rawHead;
+let body = rawBody;
+// Endereço de teste (GitHub Pages em /<repo>/): noindex e links/imagens apontando para o próprio teste.
+if (process.env.SITE_ENV === 'staging') {
+  const base = `/${SITE.repo}`;
+  const own = new RegExp(`href="${SITE.url.replace(/[.]/g, '\\.')}/`, 'g');
+  const fix = (s) => s.replace(/(src|href)="\/(?!\/)/g, `$1="${base}/`).replace(own, `href="${base}/`);
+  const fixSet = (s) => fix(s).replace(/srcset="([^"]*)"/g, (m, v) => `srcset="${v.replace(/(^|,\s*)\/(?!\/)/g, `$1${base}/`)}"`);
+  head = fix(head.replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex, nofollow">'));
+  body = fixSet(body);
+}
+---
+<!doctype html>
+<html lang={SITE.lang}>
+<head>
+<Fragment set:html={head} />
+{ld && <script type="application/ld+json" is:inline set:html={ld}></script>}
+{css && <style is:inline set:html={css}></style>}
+</head>
+<body>
+<SiteHeader />
+<main id="conteudo" tabindex="-1">
+<Fragment set:html={body} />
+</main>
+<SiteFooter updated={updated} />
+<WhatsAppFloat />
+{js && <script is:inline set:html={js}></script>}
+</body>
+</html>

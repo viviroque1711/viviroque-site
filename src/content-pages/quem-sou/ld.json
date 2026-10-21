@@ -1,0 +1,142 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "ProfilePage",
+   "@id": "https://viviroque.com.br/quem-sou/#profile",
+   "url": "https://viviroque.com.br/quem-sou/",
+   "name": "Quem é Viviane Roque",
+   "inLanguage": "pt-BR",
+   "isPartOf": {
+    "@id": "https://viviroque.com.br/#website"
+   },
+   "mainEntity": {
+    "@id": "https://viviroque.com.br/#viviane-roque"
+   },
+   "dateModified": "2026-10-21"
+  },
+  {
+   "@type": "Person",
+   "@id": "https://viviroque.com.br/#viviane-roque",
+   "name": "Viviane Roque",
+   "url": "https://viviroque.com.br/",
+   "image": "https://viviroque.com.br/img/viviane-roque-retrato.png",
+   "jobTitle": "Fundadora",
+   "description": "Especialista em transformação digital, gestão de operações e inteligência artificial. Fundadora da Roque Business Evolution e do Aurora Premium.",
+   "sameAs": [
+    "https://www.linkedin.com/in/vivianepereirambas/",
+    "https://www.instagram.com/viviroqueoficial/"
+   ],
+   "worksFor": {
+    "@id": "https://roquebusinessevolution.com/#org"
+   },
+   "hasCredential": [
+    {
+     "@type": "EducationalOccupationalCredential",
+     "name": "PMP",
+     "credentialCategory": "certification"
+    },
+    {
+     "@type": "EducationalOccupationalCredential",
+     "name": "SAFe Agilist",
+     "credentialCategory": "certification"
+    },
+    {
+     "@type": "EducationalOccupationalCredential",
+     "name": "PSM",
+     "credentialCategory": "certification"
+    },
+    {
+     "@type": "EducationalOccupationalCredential",
+     "name": "Six Sigma Master Black Belt",
+     "credentialCategory": "certification"
+    }
+   ],
+   "alumniOf": [
+    {
+     "@type": "EducationalOrganization",
+     "name": "Columbia University"
+    },
+    {
+     "@type": "EducationalOrganization",
+     "name": "Massachusetts Institute of Technology (MIT)"
+    },
+    {
+     "@type": "EducationalOrganization",
+     "name": "FIA Business School"
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Início",
+     "item": "https://viviroque.com.br/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Quem sou",
+     "item": "https://viviroque.com.br/quem-sou/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://viviroque.com.br/quem-sou/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Quem é Viviane Roque?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Viviane Roque é especialista em transformação digital, gestão de operações e inteligência artificial, fundadora da Roque Business Evolution e do Aurora Premium. Trabalha com tecnologia desde 1998."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Qual é a trajetória de Viviane Roque?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Começou em 1998 na BCP, depois Claro, estruturando operações digitais. Passou pela Ernst & Young e pela NEC, atuou no PMO da Arena Fonte Nova na Copa de 2014 e hoje conduz a Roque Business Evolution e o Aurora Premium."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "O que é a Roque Business Evolution?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "É a agência de IA, criação de sites, desenvolvimento de software e transformação digital fundada por Viviane Roque. O site é roquebusinessevolution.com ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "O que é o Aurora Premium?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "É um sistema de agendamento e gestão para salões, barbearias, clínicas, spas e pet shops, lançado por Viviane Roque em 2025. O site é aurorapremium.com ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Viviane Roque faz mentoria?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim, para líderes e empresários. A página de mentoria explica como funciona, e o primeiro passo é uma conversa de alinhamento."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Como falar com Viviane Roque?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pelo WhatsApp +55 11 97396-7161 . Também está no LinkedIn e no Instagram ."
+     }
+    }
+   ]
+  }
+ ]
+}

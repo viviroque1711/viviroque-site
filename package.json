@@ -1,0 +1,26 @@
+{
+  "name": "viviroque-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "content": "node scripts/content/build.mjs",
+    "verify": "node scripts/verify-site.mjs",
+    "monitor": "node scripts/monitor.mjs"
+  },
+  "dependencies": {
+    "@fontsource/literata": "^5.2.8",
+    "@fontsource/schibsted-grotesk": "^5.2.8",
+    "astro": "^7.3.8"
+  },
+  "devDependencies": {
+    "@emnapi/core": "^1.11.3",
+    "@emnapi/runtime": "^1.11.3",
+    "sharp": "^0.35.5"
+  }
+}

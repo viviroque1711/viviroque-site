@@ -1,0 +1,165 @@
+<html lang="en"><head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/svg+xml" href="/vite.svg">
+		<meta name="generator" content="Hostinger Horizons">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Conteúdos - Viviane Roque</title>
+		<script type="module" crossorigin="" src="/assets/index-dbea1b3e.js"></script>
+		<link rel="stylesheet" href="/assets/index-33000648.css">
+		<script type="module">
+window.onerror = (message, source, lineno, colno, errorObj) => {
+	const errorDetails = errorObj ? JSON.stringify({
+		name: errorObj.name,
+		message: errorObj.message,
+		stack: errorObj.stack,
+		source,
+		lineno,
+		colno,
+	}) : null;
+
+	window.parent.postMessage({
+		type: 'horizons-runtime-error',
+		message,
+		error: errorDetails
+	}, '*');
+};
+</script>
+		<script type="module">
+const observer = new MutationObserver((mutations) => {
+	for (const mutation of mutations) {
+		for (const addedNode of mutation.addedNodes) {
+			if (
+				addedNode.nodeType === Node.ELEMENT_NODE &&
+				(
+					addedNode.tagName?.toLowerCase() === 'vite-error-overlay' ||
+					addedNode.classList?.contains('backdrop')
+				)
+			) {
+				handleViteOverlay(addedNode);
+			}
+		}
+	}
+});
+
+observer.observe(document.documentElement, {
+	childList: true,
+	subtree: true
+});
+
+function handleViteOverlay(node) {
+	if (!node.shadowRoot) {
+		return;
+	}
+
+	const backdrop = node.shadowRoot.querySelector('.backdrop');
+
+	if (backdrop) {
+		const overlayHtml = backdrop.outerHTML;
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(overlayHtml, 'text/html');
+		const messageBodyElement = doc.querySelector('.message-body');
+		const fileElement = doc.querySelector('.file');
+		const messageText = messageBodyElement ? messageBodyElement.textContent.trim() : '';
+		const fileText = fileElement ? fileElement.textContent.trim() : '';
+		const error = messageText + (fileText ? ' File:' + fileText : '');
+
+		window.parent.postMessage({
+			type: 'horizons-vite-error',
+			error,
+		}, '*');
+	}
+}
+</script>
+		<script type="module">
+const originalConsoleError = console.error;
+console.error = function(...args) {
+	originalConsoleError.apply(console, args);
+
+	let errorString = '';
+
+	for (let i = 0; i < args.length; i++) {
+		const arg = args[i];
+		if (arg instanceof Error) {
+			errorString = arg.stack || `${arg.name}: ${arg.message}`;
+			break;
+		}
+	}
+
+	if (!errorString) {
+		errorString = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : String(arg)).join(' ');
+	}
+
+	window.parent.postMessage({
+		type: 'horizons-console-error',
+		error: errorString
+	}, '*');
+};
+</script>
+		<script type="module">
+const originalFetch = window.fetch;
+
+window.fetch = function(...args) {
+	const url = args[0] instanceof Request ? args[0].url : args[0];
+
+	// Skip WebSocket URLs
+	if (url.startsWith('ws:') || url.startsWith('wss:')) {
+		return originalFetch.apply(this, args);
+	}
+
+	return originalFetch.apply(this, args)
+		.then(async response => {
+			const contentType = response.headers.get('Content-Type') || '';
+
+			// Exclude HTML document responses
+			const isDocumentResponse =
+				contentType.includes('text/html') ||
+				contentType.includes('application/xhtml+xml');
+
+			if (!response.ok && !isDocumentResponse) {
+					const responseClone = response.clone();
+					const errorFromRes = await responseClone.text();
+					const requestUrl = response.url;
+					console.error(`Fetch error from ${requestUrl}: ${errorFromRes}`);
+			}
+
+			return response;
+		})
+		.catch(error => {
+			if (!url.match(/.html?$/i)) {
+				console.error(error);
+			}
+
+			throw error;
+		});
+};
+</script>
+		<script type="module">
+if (window.navigation && window.self !== window.top) {
+	window.navigation.addEventListener('navigate', (event) => {
+		const url = event.destination.url;
+
+		try {
+			const destinationUrl = new URL(url);
+			const destinationOrigin = destinationUrl.origin;
+			const currentOrigin = window.location.origin;
+
+			if (destinationOrigin === currentOrigin) {
+				return;
+			}
+		} catch (error) {
+			return;
+		}
+
+		window.parent.postMessage({
+			type: 'horizons-navigation-error',
+			url,
+		}, '*');
+	});
+}
+</script>
+	<meta name="description" content="Artigos, vídeos e conteúdos estratégicos sobre liderança, mindset, estratégia e transformação digital." data-react-helmet="true"></head>
+	<body>
+		<div id="root"><div class="min-h-screen bg-black text-white"><nav class="fixed top-0 w-full bg-black/95 backdrop-blur-md z-50 border-b border-gold/10"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-20"><a class="flex items-center" href="/"><span class="font-serif text-2xl font-bold text-gold">Viviane Roque</span></a><div class="hidden lg:flex items-center space-x-8"><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/">Home</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/quem-sou">Quem Sou</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/minha-atuacao">Minha Atuação</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/trabalhe-comigo">Trabalhe Comigo</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/para-empresas">Para Empresas</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-gold" href="/conteudos">Conteúdos</a><a class="font-sans text-sm font-medium transition-colors duration-300 text-white hover:text-gold" href="/contato">Contato</a></div><button class="lg:hidden text-white hover:text-gold transition-colors duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div></nav><div class="pt-20 bg-black min-h-screen"><section class="py-16 bg-gradient-to-b from-black to-black/95"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12" style="opacity: 1; transform: none;"><h1 class="font-serif text-4xl sm:text-5xl font-bold text-white mb-6">Conteúdos</h1><p class="font-sans text-xl text-silver/90 max-w-3xl mx-auto">Reflexões, insights e estratégias para líderes e empresas que buscam evolução real.</p></div><div class="max-w-4xl mx-auto"><div class="relative mb-8"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-4 top-1/2 transform -translate-y-1/2 text-silver/50 w-5 h-5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="text" placeholder="Buscar conteúdos..." class="w-full bg-black/50 border border-gold/20 rounded-lg pl-12 pr-4 py-4 text-white placeholder-silver/50 focus:outline-none focus:border-gold transition-colors duration-300" value=""></div><div class="flex flex-wrap gap-3 justify-center"><button class="px-6 py-2 rounded-lg font-sans font-medium transition-all duration-300 bg-gold text-black">Todos</button><button class="px-6 py-2 rounded-lg font-sans font-medium transition-all duration-300 bg-black/50 border border-gold/20 text-silver hover:border-gold hover:text-gold">Liderança</button><button class="px-6 py-2 rounded-lg font-sans font-medium transition-all duration-300 bg-black/50 border border-gold/20 text-silver hover:border-gold hover:text-gold">Estratégia</button><button class="px-6 py-2 rounded-lg font-sans font-medium transition-all duration-300 bg-black/50 border border-gold/20 text-silver hover:border-gold hover:text-gold">Mindset</button><button class="px-6 py-2 rounded-lg font-sans font-medium transition-all duration-300 bg-black/50 border border-gold/20 text-silver hover:border-gold hover:text-gold">Transformação Digital</button></div></div></div></section><section class="py-16 bg-black"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><article class="bg-gradient-to-br from-black to-black/80 border border-gold/20 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-gold/20 transition-all duration-300 cursor-pointer group" style="opacity: 1; transform: none;"><div class="p-6"><div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full bg-gold/10 border border-gold/30"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open w-4 h-4 text-gold mr-2"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg><span class="text-xs font-sans font-medium text-gold uppercase">Artigo</span></span><span class="text-xs font-sans text-silver/60">22 de jan. de 2026</span></div><h2 class="font-serif text-xl font-bold text-white mb-3 group-hover:text-gold transition-colors duration-300">O Que CEOs Subestimam ao Assumir uma Operação Local no Brasil</h2><p class="font-sans text-silver/80 mb-4 leading-relaxed">O Brasil não é para amadores. Entenda as armadilhas culturais e operacionais que derrubam líderes globais ao assumir operações locais.</p><div class="flex items-center justify-between pt-4 border-t border-gold/10"><span class="flex items-center text-sm font-sans text-silver/60"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-4 h-4 mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>10 min</span><span class="text-sm font-sans text-gold group-hover:translate-x-1 transition-transform duration-300">Ler mais →</span></div></div></article><article class="bg-gradient-to-br from-black to-black/80 border border-gold/20 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-gold/20 transition-all duration-300 cursor-pointer group" style="opacity: 1; transform: none;"><div class="p-6"><div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full bg-gold/10 border border-gold/30"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open w-4 h-4 text-gold mr-2"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg><span class="text-xs font-sans font-medium text-gold uppercase">Artigo</span></span><span class="text-xs font-sans text-silver/60">22 de jan. de 2026</span></div><h2 class="font-serif text-xl font-bold text-white mb-3 group-hover:text-gold transition-colors duration-300">Por Que Crescimento Sem Governança Destrói Margens</h2><p class="font-sans text-silver/80 mb-4 leading-relaxed">Crescer rápido é o sonho de qualquer negócio. Mas sem governança, esse sonho pode virar um pesadelo de ineficiência e perda de margem.</p><div class="flex items-center justify-between pt-4 border-t border-gold/10"><span class="flex items-center text-sm font-sans text-silver/60"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-4 h-4 mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>9 min</span><span class="text-sm font-sans text-gold group-hover:translate-x-1 transition-transform duration-300">Ler mais →</span></div></div></article><article class="bg-gradient-to-br from-black to-black/80 border border-gold/20 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-gold/20 transition-all duration-300 cursor-pointer group" style="opacity: 1; transform: none;"><div class="p-6"><div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full bg-gold/10 border border-gold/30"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open w-4 h-4 text-gold mr-2"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg><span class="text-xs font-sans font-medium text-gold uppercase">Artigo</span></span><span class="text-xs font-sans text-silver/60">22 de jan. de 2026</span></div><h2 class="font-serif text-xl font-bold text-white mb-3 group-hover:text-gold transition-colors duration-300">Os 3 Erros Silenciosos que Travam Operações B2B no Brasil</h2><p class="font-sans text-silver/80 mb-4 leading-relaxed">Os maiores obstáculos ao crescimento raramente aparecem em dashboards. Eles se escondem em processos e detalhes operacionais. Descubra os 3 erros mais comuns.</p><div class="flex items-center justify-between pt-4 border-t border-gold/10"><span class="flex items-center text-sm font-sans text-silver/60"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-4 h-4 mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>7 min</span><span class="text-sm font-sans text-gold group-hover:translate-x-1 transition-transform duration-300">Ler mais →</span></div></div></article><article class="bg-gradient-to-br from-black to-black/80 border border-gold/20 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-gold/20 transition-all duration-300 cursor-pointer group" style="opacity: 0; transform: translateY(23.5919px);"><div class="p-6"><div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full bg-gold/10 border border-gold/30"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open w-4 h-4 text-gold mr-2"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg><span class="text-xs font-sans font-medium text-gold uppercase">Artigo</span></span><span class="text-xs font-sans text-silver/60">14 de jan. de 2026</span></div><h2 class="font-serif text-xl font-bold text-white mb-3 group-hover:text-gold transition-colors duration-300">O Líder que Você Precisa Se Tornar</h2><p class="font-sans text-silver/80 mb-4 leading-relaxed">Liderança não é sobre controlar pessoas. É sobre criar um ambiente onde elas possam crescer.</p><div class="flex items-center justify-between pt-4 border-t border-gold/10"><span class="flex items-center text-sm font-sans text-silver/60"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-4 h-4 mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>8 min</span><span class="text-sm font-sans text-gold group-hover:translate-x-1 transition-transform duration-300">Ler mais →</span></div></div></article><article class="bg-gradient-to-br from-black to-black/80 border border-gold/20 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-gold/20 transition-all duration-300 cursor-pointer group" style="opacity: 0; transform: translateY(30px);"><div class="p-6"><div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full bg-gold/10 border border-gold/30"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video w-4 h-4 text-gold mr-2"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg><span class="text-xs font-sans font-medium text-gold uppercase">Vídeo</span></span><span class="text-xs font-sans text-silver/60">09 de jan. de 2026</span></div><h2 class="font-serif text-xl font-bold text-white mb-3 group-hover:text-gold transition-colors duration-300">Estratégia sem Execução é Ilusão</h2><p class="font-sans text-silver/80 mb-4 leading-relaxed">Por que 90% das estratégias falham na implementação e como evitar esse erro.</p><div class="flex items-center justify-between pt-4 border-t border-gold/10"><span class="flex items-center text-sm font-sans text-silver/60"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-4 h-4 mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>12 min</span><span class="text-sm font-sans text-gold group-hover:translate-x-1 transition-transform duration-300">Ler mais →</span></div></div></article><article class="bg-gradient-to-br from-black to-black/80 border border-gold/20 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-gold/20 transition-all duration-300 cursor-pointer group" style="opacity: 0; transform: translateY(30px);"><div class="p-6"><div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full bg-gold/10 border border-gold/30"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open w-4 h-4 text-gold mr-2"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg><span class="text-xs font-sans font-medium text-gold uppercase">Artigo</span></span><span class="text-xs font-sans text-silver/60">04 de jan. de 2026</span></div><h2 class="font-serif text-xl font-bold text-white mb-3 group-hover:text-gold transition-colors duration-300">Reprogramando Crenças Limitantes</h2><p class="font-sans text-silver/80 mb-4 leading-relaxed">Como identificar e transformar os padrões mentais que impedem seu crescimento.</p><div class="flex items-center justify-between pt-4 border-t border-gold/10"><span class="flex items-center text-sm font-sans text-silver/60"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-4 h-4 mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>10 min</span><span class="text-sm font-sans text-gold group-hover:translate-x-1 transition-transform duration-300">Ler mais →</span></div></div></article><article class="bg-gradient-to-br from-black to-black/80 border border-gold/20 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-gold/20 transition-all duration-300 cursor-pointer group" style="opacity: 0; transform: translateY(30px);"><div class="p-6"><div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full bg-gold/10 border border-gold/30"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open w-4 h-4 text-gold mr-2"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg><span class="text-xs font-sans font-medium text-gold uppercase">Artigo</span></span><span class="text-xs font-sans text-silver/60">19 de dez. de 2025</span></div><h2 class="font-serif text-xl font-bold text-white mb-3 group-hover:text-gold transition-colors duration-300">Transformação Digital Começa com Transformação Mental</h2><p class="font-sans text-silver/80 mb-4 leading-relaxed">A tecnologia é apenas a ferramenta. A verdadeira mudança acontece nas pessoas.</p><div class="flex items-center justify-between pt-4 border-t border-gold/10"><span class="flex items-center text-sm font-sans text-silver/60"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-4 h-4 mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>15 min</span><span class="text-sm font-sans text-gold group-hover:translate-x-1 transition-transform duration-300">Ler mais →</span></div></div></article><article class="bg-gradient-to-br from-black to-black/80 border border-gold/20 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-gold/20 transition-all duration-300 cursor-pointer group" style="opacity: 0; transform: translateY(30px);"><div class="p-6"><div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full bg-gold/10 border border-gold/30"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video w-4 h-4 text-gold mr-2"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg><span class="text-xs font-sans font-medium text-gold uppercase">Vídeo</span></span><span class="text-xs font-sans text-silver/60">14 de dez. de 2025</span></div><h2 class="font-serif text-xl font-bold text-white mb-3 group-hover:text-gold transition-colors duration-300">Os 5 Pilares da Liderança Consciente</h2><p class="font-sans text-silver/80 mb-4 leading-relaxed">Como construir uma liderança que integra resultados com bem-estar e propósito.</p><div class="flex items-center justify-between pt-4 border-t border-gold/10"><span class="flex items-center text-sm font-sans text-silver/60"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-4 h-4 mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>18 min</span><span class="text-sm font-sans text-gold group-hover:translate-x-1 transition-transform duration-300">Ler mais →</span></div></div></article><article class="bg-gradient-to-br from-black to-black/80 border border-gold/20 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-gold/20 transition-all duration-300 cursor-pointer group" style="opacity: 0; transform: translateY(30px);"><div class="p-6"><div class="flex items-center justify-between mb-4"><span class="inline-flex items-center px-3 py-1 rounded-full bg-gold/10 border border-gold/30"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open w-4 h-4 text-gold mr-2"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg><span class="text-xs font-sans font-medium text-gold uppercase">Artigo</span></span><span class="text-xs font-sans text-silver/60">09 de dez. de 2025</span></div><h2 class="font-serif text-xl font-bold text-white mb-3 group-hover:text-gold transition-colors duration-300">Governança que Funciona na Prática</h2><p class="font-sans text-silver/80 mb-4 leading-relaxed">Frameworks de governança aplicados em empresas reais, com resultados mensuráveis.</p><div class="flex items-center justify-between pt-4 border-t border-gold/10"><span class="flex items-center text-sm font-sans text-silver/60"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-4 h-4 mr-2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>12 min</span><span class="text-sm font-sans text-gold group-hover:translate-x-1 transition-transform duration-300">Ler mais →</span></div></div></article></div></div></section></div><a href="https://wa.me/5511973967161" target="_blank" rel="noopener noreferrer" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center justify-center w-14 h-14 bg-black/80 backdrop-blur-md border border-gold/30 rounded-full shadow-lg shadow-black/50 hover:shadow-gold/20 transition-all duration-300 group overflow-hidden" aria-label="Fale conosco no WhatsApp" style="opacity: 1; transform: none;"><div class="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div><div class="absolute inset-0 rounded-full border border-white/5 pointer-events-none"></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle w-7 h-7 text-[#25D366] relative z-10 drop-shadow-sm"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a><footer class="bg-black border-t border-gold/20 py-12"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8"><div><span class="font-serif text-2xl font-bold text-gold">Viviane Roque</span><p class="mt-4 text-silver/80 font-sans text-sm">Estratégia, Consciência e Execução para Pessoas e Empresas que Decidiram Crescer de Verdade.</p></div><div><h3 class="font-serif text-lg font-semibold text-white mb-4">Navegação</h3><ul class="space-y-2"><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/trabalhe-comigo">Mentoria Estratégica</a></li><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/para-empresas">Atuação Empresarial</a></li><li><a class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm" href="/conteudos">Conteúdos Autorais</a></li><li><span class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm cursor-pointer">Política de Privacidade</span></li><li><span class="text-silver/80 hover:text-gold transition-colors duration-300 font-sans text-sm cursor-pointer">Termos de Uso</span></li></ul></div><div><h3 class="font-serif text-lg font-semibold text-white mb-4">Vamos Conversar?</h3><button class="w-full bg-gold hover:bg-gold/90 text-black font-sans font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/50">Falar com Viviane</button></div></div><div class="border-t border-gold/20 pt-8 text-center"><p class="text-silver/60 font-sans text-sm">© 2026 Viviane Roque. Todos os direitos reservados.</p></div></div></footer><div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;"><ol tabindex="-1" class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]"></ol></div></div></div>
+		
+	
+</body></html>
