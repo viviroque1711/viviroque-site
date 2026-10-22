@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # "staging" = endereço de teste do GitHub Pages (noindex); "production" = domínio do site.
+      SITE_ENV: staging
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,11 +28,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-        env:
-          # "staging" = endereço de teste do GitHub Pages (noindex); "production" = domínio do site.
-          SITE_ENV: staging
       - name: Checa duplicidade de dados estruturados no HTML gerado
         run: node scripts/ld-count.mjs
+      - name: Checa que os robôs de busca e de IA entram em todo o site (só em produção)
+        if: env.SITE_ENV == 'production'
+        run: node scripts/check-robots.mjs dist
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
