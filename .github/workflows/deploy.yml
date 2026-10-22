@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # "staging" = endereço de teste do GitHub Pages (noindex); "production" = domínio do site.
-      SITE_ENV: staging
+      SITE_ENV: production
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
